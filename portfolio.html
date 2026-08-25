@@ -1,135 +1,210 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>แฟ้มสะสมงานของฉัน</title>
-<style>
-body{
-    font-family: 'Sarabun', sans-serif;
-    background-color:#FFB6B9;
-    margin:0;
-    padding:30px;
-}
-.container{
-    max-width:900px;
-    margin:auto;
-}
-h1{
-    text-align:center;
-    color:#2c3e50;
-}
-.subtitle{
-    text-align:center;
-    margin-bottom:30px;
-}
-.card{
-    background:white;
-    padding:20px;
-    margin:20px 0;
-    border-radius:15px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.15);
-}
-.profile{
-    text-align:center;
-}
-.profile img{
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    object-fit:cover;
-    border:5px solid #FFB6B9;
-}
-h2{
-    color:#2c3e50;
-}
-.btn{
-    display:inline-block;
-    background:#2c3e50;
-    color:white;
-    text-decoration:none;
-    padding:10px 20px;
-    border-radius:8px;
-    margin-top:20px;
-}
-.footer{
-    text-align:center;
-    margin-top:30px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แฟ้มสะสมผลงานของณัฐธิดา 🎀</title>
+    <style>
+        body {
+            background-color: #FFF0F5; /* สีชมพูนมพาสเทล */
+            background-image: radial-gradient(#FFB6B9 10%, transparent 11%), radial-gradient(#FFB6B9 10%, transparent 11%);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px; /* ลายจุด Polka Dot น่ารักๆ */
+            color: #5D536B;
+            padding: 40px 20px;
+            font-family: 'Kanit', 'Segoe UI', sans-serif;
+            margin: 0;
+        }
+
+        /* คอนเทนเนอร์หลัก */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* หัวข้อหน้า */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: bounce 2s infinite;
+        }
+
+        .header h1 {
+            color: #FF7B89;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        /* การ์ดหมวดหมู่ใหญ่ */
+        .section-card {
+            background: #FFFFFF;
+            border: 3px solid #FFB6B9;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(255, 182, 185, 0.3);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #FF7B89;
+            border-bottom: 2px dashed #FFB6B9;
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* เลย์เอาต์ตารางผลงาน */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* การ์ดผลงานย่อย */
+        .project-card {
+            background: #FFFDF9;
+            border: 2px dashed #FFD1D4;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+            background: #FFEBEF;
+            border-style: solid;
+        }
+
+        .project-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .project-card h3 {
+            margin: 10px 0 5px 0;
+            color: #4A4A4A;
+            font-size: 18px;
+        }
+
+        .project-card p {
+            margin: 0;
+            font-size: 14px;
+            color: #7A7A7A;
+        }
+
+        /* ปุ่มควบคุมด้านล่าง */
+        .btn-group {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #FFB6B9;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 0 #FF9296;
+            transition: all 0.2s ease;
+            margin: 0 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #FF9296;
+            background-color: #FFA4A8;
+        }
+
+        .btn-back {
+            background-color: #BCE6FF;
+            box-shadow: 0 4px 0 #89C7E8;
+        }
+
+        .btn-back:hover {
+            background-color: #A3DBFF;
+            box-shadow: 0 2px 0 #89C7E8;
+        }
+
+        /* แอนิเมชันหัวข้อดุ๊กดิ๊ก */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
+    <!-- ดึงฟอนต์น่ารักๆ มาใช้ -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <h1>📁 แฟ้มสะสมงาน (Portfolio)</h1>
-    <p class="subtitle">
-        รวบรวมผลงาน กิจกรรม และความภาคภูมิใจทางการศึกษา
-    </p>
-    <!-- โปรไฟล์ -->
-    <div class="card profile">
-        <img src="IMG_4386.jpeg" alt="รูปโปรไฟล์">
-        <h2>ณัฐธิดา ศรีสงคราม</h2>
-        <p><strong>ระดับชั้น:</strong> มัธยมศึกษาปีที่ 6</p>
-        <p>
-            เป็นนักเรียนที่สนใจด้านเทคโนโลยี การออกแบบ
-            และการพัฒนาทักษะการเรียนรู้ในศตวรรษที่ 21
-            มีความตั้งใจในการศึกษา ใฝ่เรียนรู้
-            และพร้อมพัฒนาตนเองอยู่เสมอ
-        </p>
-        <p>📧 Email : s34873@banbung.ac.th</p>
-        <p>📞 โทรศัพท์ : 063-0933514</p>
+
+    <div class="container">
+        
+        <!-- ส่วนหัวข้อ -->
+        <div class="header">
+            <h1>My Portfolio ✨📂</h1>
+            <p>รวมผลงานและความภูมิใจของณัฐธิดาค่ะ</p>
+        </div>
+
+        <!-- หมวดหมู่ที่ 1: ประวัติการศึกษา -->
+        <div class="section-card">
+            <h2 class="section-title">🎒 Education (การศึกษา)</h2>
+            <p>✨ กำลังศึกษาในห้องเรียนพิเศษ <strong>Gifted Program</strong></p>
+            <p>เน้นการเรียนรู้ด้านวิทยาศาสตร์-คณิตศาสตร์ และเทคโนโลยีแบบเข้มข้น 🧠💡</p>
+        </div>
+
+        <!-- หมวดหมู่ที่ 2: ผลงานที่โดดเด่น -->
+        <div class="section-card">
+            <h2 class="section-title">🏆 My Projects (ผลงานของฉัน)</h2>
+            <div class="portfolio-grid">
+                
+                <!-- ชิ้นงานที่ 1 -->
+                <div class="project-card">
+                    <div class="project-icon">💻</div>
+                    <h3>Web Development</h3>
+                    <p>สร้างและออกแบบหน้าเว็บไซต์แนะนำตัวด้วยตัวเอง</p>
+                </div>
+
+                <!-- ชิ้นงานที่ 2 -->
+                <div class="project-card">
+                    <div class="project-icon">🔬</div>
+                    <h3>Science Project</h3>
+                    <p>โครงงานวิทยาศาสตร์สุดสร้างสรรค์ฉบับเด็ก Gifted</p>
+                </div>
+
+                <!-- ชิ้นงานที่ 3 -->
+                <div class="project-card">
+                    <div class="project-icon">🎨</div>
+                    <h3>Digital Art</h3>
+                    <p>ออกแบบกราฟิกและวาดภาพตกแต่งสไตล์พาสเทล</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- หมวดหมู่ที่ 3: ทักษะและความสามารถ -->
+        <div class="section-card">
+            <h2 class="section-title">🌟 Skills (ความสามารถพิเศษ)</h2>
+            <p>⭐ Coding (HTML / CSS พื้นฐาน)</p>
+            <p>⭐ การทำวิจัยและทดลองทางวิทยาศาสตร์</p>
+            <p>⭐ คิดเลขเร็วและแก้โจทย์ปัญหาเชิงตรรกะ</p>
+        </div>
+
+        <!-- ปุ่มกดเปลี่ยนหน้า -->
+        <div class="btn-group">
+            <a href="index.html" class="btn btn-back">🐾 ย้อนกลับ</a>
+            <a href="#" class="btn" onclick="alert('หน้าต่อไปกำลังเตรียมข้อมูลอยู่จ้า ยินดีที่ได้รู้จักนะคะ! 💕')">ติดต่อฉัน 💌</a>
+        </div>
+
     </div>
-    <!-- ข้อมูลส่วนตัว -->
-    <div class="card">
-        <h2>👤 ข้อมูลส่วนตัว</h2>
-        <p>ชื่อ : ณัฐธิดา ศรีสงคราม</p>
-        <p>ระดับการศึกษา : มัธยมศึกษาตอนปลาย</p>
-        <p>โรงเรียน : บ้านบึง ”อุตสาหกรรมนุเคราะห์”</p>
-        <p>วันเกิด : 20-03-2009</p>
-        <p>งานอดิเรก : นอน</p>
-    </div>
-    <!-- ทักษะ -->
-    <div class="card">
-        <h2>💡 ทักษะและความสามารถ</h2>
-        <ul>
-            <li>ใช้โปรแกรม Microsoft Word, PowerPoint</li>
-            <li>ออกแบบสื่อและโปสเตอร์เบื้องต้น</li>
-            <li>ทำงานร่วมกับผู้อื่นได้ดี</li>
-            <li>มีความรับผิดชอบและตรงต่อเวลา</li>
-            <li>สามารถใช้เทคโนโลยีสารสนเทศในการเรียนรู้</li>
-        </ul>
-    </div>
-    <!-- ผลงาน -->
-    <div class="card">
-        <h2>🏆 ผลงานเด่น</h2>
-        <h3>1. นอนหลับ</h3>
-        <p>
-            ศึกษาและพัฒนาชีวิตโดยใช้กระบวนการนอน
-            เพื่อแก้ปัญหาในชีวิตประจำวัน ฝึกการวิเคราะห์
-            การวางแผน และการนอนอย่างเป็นระบบ
-        </p>
-    </div>
-    <!-- กิจกรรม -->
-    <div class="card">
-        <h2>🎖️ กิจกรรมและเกียรติบัตร</h2>
-        <ul>
-            <li>เข้าร่วมกิจกรรมวันวิทยาศาสตร์</li>
-            <li>เข้าร่วมกิจกรรมจิตอาสาของโรงเรียน</li>
-            <li>ได้รับเกียรติบัตรจากการเข้าร่วมการแข่งขันทางวิชาการ</li>
-            <li>เข้าร่วมกิจกรรมแนะแนวการศึกษาต่อ</li>
-        </ul>
-    </div>
-    <!-- เป้าหมาย -->
-    <div class="card">
-        <h2>🎯 เป้าหมายในอนาคต</h2>
-        <p>
-            มุ่งมั่นพัฒนาความรู้และทักษะทางวิชาการ
-            เพื่อศึกษาต่อในระดับอุดมศึกษา
-            และนำความรู้ไปใช้ให้เกิดประโยชน์ต่อสังคม
-        </p>
-    </div>
-    <div class="footer">
-        <a href="index.html" class="btn">🔙 กลับหน้าแรก</a>
-    </div>
-</div>
+
 </body>
 </html>
