@@ -3,63 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แฟ้มสะสมผลงานของณัฐธิดา 🎀</title>
+    <title>แฟ้มสะสมผลงานของณัฐธิดา 🎀✨</title>
+    <!-- ดึงฟอนต์ Mali (ลายมือ) และ Kanit มาใช้ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- ดึง Icon FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        /* ตั้งค่า Cursor น่ารักๆ */
         body {
-            background-color: #FFF0F5; /* สีชมพูนมพาสเทล */
-            background-image: radial-gradient(#FFB6B9 10%, transparent 11%), radial-gradient(#FFB6B9 10%, transparent 11%);
-            background-size: 30px 30px;
-            background-position: 0 0, 15px 15px; /* ลายจุด Polka Dot น่ารักๆ */
+            background-color: #FFF0F5;
+            background-image: radial-gradient(#FFB6B9 12%, transparent 12%), radial-gradient(#FFB6B9 12%, transparent 12%);
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
             color: #5D536B;
-            padding: 40px 20px;
-            font-family: 'Kanit', 'Segoe UI', sans-serif;
+            padding: 50px 20px;
+            font-family: 'Kanit', sans-serif;
             margin: 0;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">✨</text></svg>'), auto;
         }
 
-        /* คอนเทนเนอร์หลัก */
         .container {
             max-width: 800px;
             margin: 0 auto;
         }
 
-        /* หัวข้อหน้า */
+        /* Header น่ารัก ดุ๊กดิ๊ก */
         .header {
             text-align: center;
             margin-bottom: 40px;
-            animation: bounce 2s infinite;
+            position: relative;
         }
 
         .header h1 {
-            color: #FF7B89;
-            font-size: 32px;
+            font-family: 'Mali', cursive;
+            color: #FF6B8B;
+            font-size: 38px;
             margin-bottom: 5px;
+            text-shadow: 2px 2px 0px #FFFFFF, 4px 4px 0px #FFD1D4;
+            animation: bounce 2.5s infinite ease-in-out;
         }
 
-        /* การ์ดหมวดหมู่ใหญ่ */
-        .section-card {
+        .header p {
+            font-size: 16px;
+            color: #8C7A9C;
             background: #FFFFFF;
-            border: 3px solid #FFB6B9;
+            display: inline-block;
+            padding: 5px 20px;
             border-radius: 20px;
-            box-shadow: 0 8px 16px rgba(255, 182, 185, 0.3);
+            border: 2px dashed #FFB6B9;
+        }
+
+        /* การ์ดหมวดหมู่หลัก */
+        .section-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid #FFB6B9;
+            border-radius: 25px;
+            box-shadow: 0 10px 20px rgba(255, 182, 185, 0.3);
             padding: 30px;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        /* สติ๊กเกอร์น่ารักแปะมุมการ์ด */
+        .section-card::before {
+            content: '🎀';
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 24px;
+            background: #FFF0F5;
+            padding: 2px 8px;
+            border-radius: 50px;
+            border: 2px solid #FFB6B9;
         }
 
         .section-title {
-            color: #FF7B89;
-            border-bottom: 2px dashed #FFB6B9;
-            padding-bottom: 10px;
+            font-family: 'Mali', cursive;
+            color: #FF6B8B;
+            border-bottom: 2px dashed #FFC2C7;
+            padding-bottom: 12px;
             margin-top: 0;
-            font-size: 22px;
+            font-size: 24px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
+        /* Badge เพิ่มความเก๋ */
+        .badge {
+            background-color: #FFE3E8;
+            color: #FF5E7E;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
         /* เลย์เอาต์ตารางผลงาน */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
             gap: 20px;
             margin-top: 20px;
         }
@@ -67,82 +116,116 @@
         /* การ์ดผลงานย่อย */
         .project-card {
             background: #FFFDF9;
-            border: 2px dashed #FFD1D4;
-            border-radius: 15px;
+            border: 2px dashed #FFC2C7;
+            border-radius: 20px;
             padding: 20px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
         }
 
         .project-card:hover {
-            transform: scale(1.05);
-            background: #FFEBEF;
+            transform: translateY(-8px) scale(1.02);
+            background: #FFFFFF;
             border-style: solid;
+            border-color: #FF8E9E;
+            box-shadow: 0 8px 15px rgba(255, 142, 158, 0.2);
         }
 
         .project-icon {
-            font-size: 40px;
+            font-size: 45px;
             margin-bottom: 10px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-icon {
+            transform: rotate(10deg) scale(1.1);
         }
 
         .project-card h3 {
+            font-family: 'Mali', cursive;
             margin: 10px 0 5px 0;
-            color: #4A4A4A;
+            color: #524763;
             font-size: 18px;
         }
 
         .project-card p {
             margin: 0;
-            font-size: 14px;
-            color: #7A7A7A;
+            font-size: 13px;
+            color: #887B9B;
+            line-height: 1.5;
         }
 
-        /* ปุ่มควบคุมด้านล่าง */
+        /* สกิลบาร์แบบน่ารัก */
+        .skill-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 0 0;
+        }
+
+        .skill-item {
+            background: #FFF5F7;
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            border-radius: 15px;
+            border: 1px solid #FFE0E6;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        /* ปุ่มกดแบบเยลลี่ดุ๊กดิ๊ก */
         .btn-group {
             text-align: center;
             margin-top: 40px;
         }
 
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: #FFB6B9;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background-color: #FF9EAA;
             color: white;
             text-decoration: none;
             border-radius: 50px;
+            font-family: 'Mali', cursive;
             font-weight: bold;
             font-size: 16px;
-            box-shadow: 0 4px 0 #FF9296;
+            box-shadow: 0 5px 0 #FF7B89;
             transition: all 0.2s ease;
-            margin: 0 10px;
+            margin: 0 8px;
         }
 
         .btn:hover {
             transform: translateY(2px);
-            box-shadow: 0 2px 0 #FF9296;
-            background-color: #FFA4A8;
+            box-shadow: 0 3px 0 #FF7B89;
+            background-color: #FF8E9E;
+        }
+
+        .btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 0 0 #FF7B89;
         }
 
         .btn-back {
-            background-color: #BCE6FF;
-            box-shadow: 0 4px 0 #89C7E8;
+            background-color: #A0C4FF;
+            box-shadow: 0 5px 0 #7EA8F0;
         }
 
         .btn-back:hover {
-            background-color: #A3DBFF;
-            box-shadow: 0 2px 0 #89C7E8;
+            background-color: #8EB8FA;
+            box-shadow: 0 3px 0 #7EA8F0;
         }
 
-        /* แอนิเมชันหัวข้อดุ๊กดิ๊ก */
+        /* Animation */
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-7px) rotate(-1deg); }
         }
     </style>
-    <!-- ดึงฟอนต์น่ารักๆ มาใช้ -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -150,41 +233,42 @@
         
         <!-- ส่วนหัวข้อ -->
         <div class="header">
-            <h1>My Portfolio ✨📂</h1>
-            <p>รวมผลงานและความภูมิใจของณัฐธิดาค่ะ</p>
+            <h1>My Portfolio 💖✨</h1>
+            <p>🌷 รวมผลงานและความภูมิใจของณัฐธิดาค่ะ 🌷</p>
         </div>
 
         <!-- หมวดหมู่ที่ 1: ประวัติการศึกษา -->
         <div class="section-card">
-            <h2 class="section-title">🎒 Education (การศึกษา)</h2>
-            <p>✨ กำลังศึกษาในห้องเรียนพิเศษ <strong>Gifted Program</strong></p>
-            <p>เน้นการเรียนรู้ด้านวิทยาศาสตร์-คณิตศาสตร์ และเทคโนโลยีแบบเข้มข้น 🧠💡</p>
+            <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education (การศึกษา)</h2>
+            <span class="badge">🌸 Special Student Status</span>
+            <p style="margin-top: 5px;">✨ กำลังศึกษาในห้องเรียนพิเศษ <strong>Gifted Program</strong></p>
+            <p style="color: #7A6B8D; font-size: 14px;">เน้นการเรียนรู้ด้านวิทยาศาสตร์-คณิตศาสตร์ และเทคโนโลยีแบบเข้มข้นสุดๆ ไปเลย! 🧠💡⚡</p>
         </div>
 
         <!-- หมวดหมู่ที่ 2: ผลงานที่โดดเด่น -->
         <div class="section-card">
-            <h2 class="section-title">🏆 My Projects (ผลงานของฉัน)</h2>
+            <h2 class="section-title"><i class="fa-solid fa-star"></i> My Projects (ผลงานของฉัน)</h2>
             <div class="portfolio-grid">
                 
                 <!-- ชิ้นงานที่ 1 -->
                 <div class="project-card">
                     <div class="project-icon">💻</div>
                     <h3>Web Development</h3>
-                    <p>สร้างและออกแบบหน้าเว็บไซต์แนะนำตัวด้วยตัวเอง</p>
+                    <p>สร้างและออกแบบหน้าเว็บไซต์แนะนำตัวน่ารักๆ ด้วยตัวเอง</p>
                 </div>
 
                 <!-- ชิ้นงานที่ 2 -->
                 <div class="project-card">
-                    <div class="project-icon">🔬</div>
+                    <div class="project-icon">🧪</div>
                     <h3>Science Project</h3>
-                    <p>โครงงานวิทยาศาสตร์สุดสร้างสรรค์ฉบับเด็ก Gifted</p>
+                    <p>โครงงานวิทยาศาสตร์สุดสร้างสรรค์ ฉบับเด็ก Gifted ✌️</p>
                 </div>
 
                 <!-- ชิ้นงานที่ 3 -->
                 <div class="project-card">
                     <div class="project-icon">🎨</div>
                     <h3>Digital Art</h3>
-                    <p>ออกแบบกราฟิกและวาดภาพตกแต่งสไตล์พาสเทล</p>
+                    <p>ออกแบบกราฟิกและวาดภาพตกแต่ง สไตล์พาสเทลพาสใจ</p>
                 </div>
 
             </div>
@@ -192,16 +276,27 @@
 
         <!-- หมวดหมู่ที่ 3: ทักษะและความสามารถ -->
         <div class="section-card">
-            <h2 class="section-title">🌟 Skills (ความสามารถพิเศษ)</h2>
-            <p>⭐ Coding (HTML / CSS พื้นฐาน)</p>
-            <p>⭐ การทำวิจัยและทดลองทางวิทยาศาสตร์</p>
-            <p>⭐ คิดเลขเร็วและแก้โจทย์ปัญหาเชิงตรรกะ</p>
+            <h2 class="section-title"><i class="fa-solid fa-heart"></i> Skills (ความสามารถพิเศษ)</h2>
+            <ul class="skill-list">
+                <li class="skill-item">
+                    <span>💻 Coding (HTML / CSS / Web Design)</span>
+                    <span>⭐⭐⭐⭐</span>
+                </li>
+                <li class="skill-item">
+                    <span>🔬 ทำวิจัย & ทดลองทางวิทยาศาสตร์</span>
+                    <span>⭐⭐⭐⭐⭐</span>
+                </li>
+                <li class="skill-item">
+                    <span>🧮 คิดเลขเร็ว & แก้โจทย์ปัญหาเชิงตรรกะ</span>
+                    <span>⭐⭐⭐⭐⭐</span>
+                </li>
+            </ul>
         </div>
 
         <!-- ปุ่มกดเปลี่ยนหน้า -->
         <div class="btn-group">
-            <a href="index.html" class="btn btn-back">🐾 ย้อนกลับ</a>
-            <a href="#" class="btn" onclick="alert('หน้าต่อไปกำลังเตรียมข้อมูลอยู่จ้า ยินดีที่ได้รู้จักนะคะ! 💕')">ติดต่อฉัน 💌</a>
+            <a href="index.html" class="btn btn-back"><i class="fa-solid fa-paw"></i> ย้อนกลับ</a>
+            <a href="#" class="btn" onclick="alert('หน้าต่อไปกำลังเตรียมข้อมูลอยู่จ้า ยินดีที่ได้รู้จักนะคะ! 💕🌸')"><i class="fa-solid fa-envelope"></i> ติดต่อฉัน 💌</a>
         </div>
 
     </div>
