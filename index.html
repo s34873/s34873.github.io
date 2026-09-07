@@ -3,173 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แฟ้มสะสมผลงาน 🌈 - ณัฐธิดา</title>
+    <title>เตชินท์ — หน้าแนะนำตัว</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&family=Baloo+2:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root{
+            --mint: #A9E8D4;
+            --mint-dark: #6BC7A8;
+            --mint-soft: #E3F7EF;
+            --brown: #6B4A38;
+            --brown-dark: #4A3226;
+            --ink: #4A3226;
+            --ink-soft: #8C6F5E;
+            --line: #D9C9BB;
+            --paper: #FFFDF9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            background-color: #FFF0F5;
-            background-image: radial-gradient(#FFB6B9 10%, transparent 11%), radial-gradient(#FFB6B9 10%, transparent 11%);
-            background-size: 30px 30px;
-            background-position: 0 0, 15px 15px;
-            color: #5D536B;
-            text-align: center;
-            padding: 40px 20px;
-            font-family: 'Kanit', 'Segoe UI', sans-serif;
-        }
-
-        .container {
-            max-width: 650px;
-            margin: 0 auto;
-        }
-
-        /* หัวข้อหลัก */
-        h1 {
-            color: #FF7B89;
-            font-size: 28px;
-            margin-bottom: 30px;
-            background: #FFFFFF;
-            display: inline-block;
-            padding: 10px 30px;
-            border-radius: 50px;
-            border: 3px solid #FFB6B9;
-            box-shadow: 0 4px 10px rgba(255, 182, 185, 0.3);
-        }
-
-        /* การ์ดแต่ละส่วน */
-        .card {
-            background: #FFFFFF;
-            border: 3px solid #FFB6B9;
-            border-radius: 20px;
-            box-shadow: 0 6px 15px rgba(255, 182, 185, 0.3);
-            margin-bottom: 25px;
-            padding: 25px;
-            text-align: left;
-        }
-
-        .card-title {
-            color: #FF7B89;
-            font-size: 20px;
-            margin-top: 0;
-            margin-bottom: 15px;
+            font-family: 'Mali', cursive;
+            color: var(--ink);
+            min-height: 100vh;
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 8px;
+            padding: 48px 20px;
+            position: relative;
+            overflow: hidden;
+
+            /* polka dot background, matching the mint + brown reference */
+            background-color: var(--mint);
+            background-image:
+                radial-gradient(circle, var(--brown) 9px, transparent 10px),
+                radial-gradient(circle, var(--brown) 9px, transparent 10px);
+            background-size: 84px 84px, 84px 84px;
+            background-position: 0 0, 42px 42px;
         }
 
-        /* รายการทักษะ (Tags) */
-        .skills-container {
+        .sparkle {
+            position: absolute;
+            font-size: 20px;
+            animation: twinkle 2.4s ease-in-out infinite;
+            z-index: 2;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.15) rotate(15deg); }
+        }
+
+        .card {
+            max-width: 880px;
+            width: 100%;
+            background: var(--paper);
+            border: 2px solid var(--line);
+            border-radius: 32px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 20px 50px -20px rgba(74, 50, 38, 0.35), 0 0 0 6px var(--mint-soft);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 60px -20px rgba(74, 50, 38, 0.4), 0 0 0 6px var(--mint-soft);
+        }
+
+        /* ---- content ---- */
+        .content {
+            padding: 60px 52px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .skill-tag {
-            background-color: #FFE3E3;
-            color: #D85C6A;
-            padding: 6px 16px;
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Baloo 2', cursive;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            color: var(--mint-dark);
+            background: var(--mint-soft);
+            padding: 6px 14px;
             border-radius: 20px;
+            width: fit-content;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Baloo 2', cursive;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            color: var(--brown-dark);
+        }
+
+        .subtitle {
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--ink-soft);
+            margin-bottom: 30px;
+        }
+
+        /* signature element: cute wavy line */
+        .pulse {
+            width: 100%;
+            max-width: 260px;
+            height: 36px;
+            margin-bottom: 32px;
+        }
+        .pulse path {
+            fill: none;
+            stroke: var(--mint-dark);
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: draw 2.2s ease-out forwards;
+        }
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .pulse path { animation: none; stroke-dashoffset: 0; }
+        }
+
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .info-item {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--mint-soft);
+            border-radius: 16px;
+            border: 1px solid var(--line);
+            transition: transform 0.25s ease;
+        }
+        .info-item:hover { transform: translateX(4px); }
+
+        .info-label {
+            font-family: 'Baloo 2', cursive;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            color: var(--mint-dark);
+        }
+
+        .info-value {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--brown-dark);
+        }
+
+        .github-note {
+            margin-top: 24px;
+            font-size: 13px;
+            color: var(--ink-soft);
+            display: flex;
+            gap: 8px;
+            align-items: baseline;
+        }
+        .github-note strong { color: var(--mint-dark); font-weight: 700; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding: 14px 26px;
+            background: var(--mint);
+            color: var(--brown-dark);
+            text-decoration: none;
+            font-family: 'Baloo 2', cursive;
             font-size: 15px;
             font-weight: 600;
+            width: fit-content;
+            border-radius: 30px;
+            box-shadow: 0 6px 0 var(--mint-dark);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
-
-        /* การ์ดผลงาน */
-        .project-item {
-            background: #FFF9FA;
-            border: 2px dashed #FFB6B9;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 12px;
-        }
-
-        .project-item h3 {
-            margin: 0 0 5px 0;
-            color: #5D536B;
-            font-size: 16px;
-        }
-
-        .project-item p {
-            margin: 0;
-            font-size: 14px;
-            color: #8A7B9D;
-        }
-
-        /* ปุ่มกด */
-        .btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 30px;
-            background-color: #FFB6B9;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 16px;
-            box-shadow: 0 4px 0 #FF9296;
-            transition: all 0.2s ease;
-        }
-
         .btn:hover {
             transform: translateY(2px);
-            box-shadow: 0 2px 0 #FF9296;
-            background-color: #FFA4A8;
+            box-shadow: 0 4px 0 var(--mint-dark);
+        }
+        .btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 0 0 var(--mint-dark);
+        }
+        .btn svg { width: 16px; height: 16px; }
+
+        /* ---- image ---- */
+        .image-section {
+            position: relative;
+            background-color: var(--mint-soft);
+            background-image:
+                radial-gradient(circle, var(--brown) 5px, transparent 6px),
+                radial-gradient(circle, var(--brown) 5px, transparent 6px);
+            background-size: 44px 44px, 44px 44px;
+            background-position: 0 0, 22px 22px;
+            opacity: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        .image-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 253, 249, 0.55);
         }
 
-        .btn-github {
-            background-color: #8A7B9D;
-            box-shadow: 0 4px 0 #6C5F80;
+        .profile-img-wrapper {
+            position: relative;
+            width: 210px;
+            height: 210px;
+            animation: bob 3.5s ease-in-out infinite;
+            z-index: 1;
+        }
+        @keyframes bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        .btn-github:hover {
-            background-color: #796A8C;
-            box-shadow: 0 2px 0 #6C5F80;
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--paper);
+            box-shadow: 0 10px 25px -8px rgba(74, 50, 38, 0.45);
+        }
+
+        .ring {
+            position: absolute;
+            inset: -12px;
+            border: 3px dashed var(--brown);
+            border-radius: 50%;
+            opacity: 0.55;
+            animation: spin 18s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .badge {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--paper);
+            border: 2px solid var(--mint-dark);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-family: 'Baloo 2', cursive;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--brown-dark);
+            white-space: nowrap;
+            box-shadow: 0 4px 10px -4px rgba(74, 50, 38, 0.35);
+        }
+
+        @media (max-width: 720px) {
+            .card {
+                grid-template-columns: 1fr;
+            }
+            .image-section {
+                padding: 48px 20px 60px;
+            }
+            .content {
+                padding: 48px 32px;
+                order: 2;
+            }
+            h1 { font-size: 34px; }
         }
     </style>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <span class="sparkle" style="top:6%; left:30%;">✨</span>
+    <span class="sparkle" style="bottom:8%; right:28%; animation-delay: 1.2s;">🍃</span>
 
-    <div class="container">
-        <h1>แฟ้มสะสมผลงาน 🌈✨</h1>
+    <div class="card">
+        <div class="content">
+            <span class="eyebrow">🌿 สวัสดีครับ / Hello</span>
+            <h1>เตชินท์<br>Techin</h1>
+            <p class="subtitle">สนใจคณะแพทย์ · Interested in Medicine</p>
 
-        <!-- ส่วนที่ 1: ทักษะความสามารถ -->
-        <div class="card">
-            <h2 class="card-title">🧠 ทักษะความสามารถ (Skills)</h2>
-            <div class="skills-container">
-                <span class="skill-tag">HTML & CSS</span>
-                <span class="skill-tag">Mathematics</span>
-                <span class="skill-tag">Science</span>
-                <span class="skill-tag">English</span>
-                <span class="skill-tag">Creative Thinking</span>
+            <svg class="pulse" viewBox="0 0 260 36" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 18 Q20 4, 40 18 T80 18 Q100 32, 120 18 T160 18 Q180 4, 200 18 T260 18" />
+            </svg>
+
+            <div class="info-list">
+                <div class="info-item">
+                    <span class="info-label">🩺 Field</span>
+                    <span class="info-value">Medical</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">🎯 Target</span>
+                    <span class="info-value">The Faculty of Medicine, Ramathibodi</span>
+                </div>
             </div>
+
+            <p class="github-note">🌐 นี่คือเว็บไซต์แรกของผมที่โฮสต์บน <strong>GitHub Pages</strong></p>
+
+            <a href="portfolio.html" class="btn">
+                เปิดหน้าถัดไป
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </a>
         </div>
 
-        <!-- ส่วนที่ 2: ผลงานและกิจกรรม -->
-        <div class="card">
-            <h2 class="card-title">🏆 ผลงาน & กิจกรรม (Projects)</h2>
-            
-            <div class="project-item">
-                <h3>📌 โครงงานนักเรียนห้องเรียนพิเศษ Gifted</h3>
-                <p>ศึกษาและพัฒนาโครงงานวิทยาศาสตร์ร่วมกับเพื่อนในห้องเรียน</p>
-            </div>
-
-            <div class="project-item">
-                <h3>💻 เว็บไซต์แนะนำตัวส่วนตัว (My First Website)</h3>
-                <p>พัฒนาเว็บไซต์พอร์ตโฟลิโอด้วย HTML & CSS และโฮสต์บน GitHub Pages</p>
+        <div class="image-section">
+            <div class="profile-img-wrapper">
+                <div class="ring"></div>
+                <!-- ใส่ path รูปภาพของคุณที่นี่ -->
+                <img src="IMG_7964.jpeg" alt="Techin" class="profile-img">
+                <span class="badge">🩺 Med Student</span>
             </div>
         </div>
-
-        <!-- ส่วนที่ 3: ช่องทางติดต่อ -->
-        <div class="card">
-            <h2 class="card-title">💌 ช่องทางติดต่อ (Contact)</h2>
-            <p>📧 Email: <a href="mailto:your-email@example.com" style="color: #FF7B89;">your-email@example.com</a></p>
-            <p>🐱 GitHub: <a href="https://github.com" target="_blank" style="color: #FF7B89;">github.com/your-username</a></p>
-        </div>
-
-        <!-- ปุ่มย้อนกลับ -->
-        <a href="index.html" class="btn">🐾 กลับหน้าแรก</a>
     </div>
-
 </body>
 </html>
-html>
+
