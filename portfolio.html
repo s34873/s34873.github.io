@@ -1,305 +1,514 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แฟ้มสะสมผลงานของณัฐธิดา 🎀✨</title>
-    <!-- ดึงฟอนต์ Mali (ลายมือ) และ Kanit มาใช้ -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- ดึง Icon FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>พอร์ตฟอลิโอ | สายแพทย์</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;500;600;700&family=Baloo+2:wght@500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFDF9;
+    --paper-panel:#EAF9F3;
+    --ink:#4A3226;
+    --ink-soft:#8C6F5E;
+    --brown:#8C5A3E;
+    --brown-wash:rgba(140,90,62,0.10);
+    --mint:#6FC8AC;
+    --mint-dark:#3E8B72;
+    --line:#E7D9CC;
+    --radius:16px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    background:#4A3226;
+    color:var(--ink);
+    font-family:'Noto Sans Thai', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow:hidden;
+  }
+  .app{ display:flex; flex-direction:column; height:100vh; width:100vw; position:relative; }
 
-    <style>
-        /* ตั้งค่า Cursor น่ารักๆ */
-        body {
-            background-color: #FFF0F5;
-            background-image: radial-gradient(#FFB6B9 12%, transparent 12%), radial-gradient(#FFB6B9 12%, transparent 12%);
-            background-size: 28px 28px;
-            background-position: 0 0, 14px 14px;
-            color: #5D536B;
-            padding: 50px 20px;
-            font-family: 'Kanit', sans-serif;
-            margin: 0;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">✨</text></svg>'), auto;
-        }
+  /* ===== TOP BAR — เมนูหัวข้อ ===== */
+  .topbar{
+    flex-shrink:0;
+    background:#4A3226;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:0 22px;
+    height:70px;
+    border-bottom:1px solid rgba(255,253,249,0.08);
+  }
+  .back-link{
+    flex-shrink:0;
+    width:36px; height:36px;
+    border-radius:50%;
+    border:1px solid rgba(255,253,249,0.18);
+    display:flex; align-items:center; justify-content:center;
+    color:rgba(255,253,249,0.65);
+    text-decoration:none;
+    transition:background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .back-link svg{ width:15px; height:15px; stroke:currentColor; }
+  .back-link:hover{ background:var(--mint); color:#3B2A22; border-color:var(--mint); transform:scale(1.08); }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+  .brand{ display:flex; align-items:center; gap:8px; flex-shrink:0; }
+  .brand svg{ width:18px; height:18px; stroke:var(--mint); }
+  .brand span{ font-family:'Baloo 2', cursive; font-weight:600; font-size:13px; letter-spacing:.06em; color:rgba(255,253,249,0.7); }
 
-        /* Header น่ารัก ดุ๊กดิ๊ก */
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-        }
+  .nav-tabs{
+    display:flex;
+    gap:6px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    flex:1;
+    height:100%;
+    align-items:center;
+  }
+  .nav-tabs::-webkit-scrollbar{ display:none; }
+  .tab{
+    flex-shrink:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    padding:8px 16px;
+    cursor:pointer;
+    border-radius:20px;
+    position:relative;
+    transition:background .2s ease, transform .15s ease;
+  }
+  .tab .icon{ position:relative; }
+  .tab .icon svg{ width:16px; height:16px; stroke:rgba(255,253,249,0.5); transition:stroke .2s ease; }
+  .tab .blip{
+    position:absolute; top:-3px; right:-5px;
+    width:5px; height:5px; border-radius:50%;
+    background:var(--mint);
+    opacity:0;
+    animation:blip 1.6s ease-in-out infinite;
+  }
+  .tab span{ font-family:'Baloo 2', cursive; font-size:12px; font-weight:500; letter-spacing:.02em; color:rgba(255,253,249,0.6); white-space:nowrap; transition:color .2s ease; }
+  .tab.active{ background:rgba(111,200,172,0.16); }
+  .tab.active .icon svg{ stroke:var(--mint); }
+  .tab.active span{ color:var(--paper); font-weight:700; }
+  .tab.active .blip{ opacity:1; }
+  .tab:hover{ transform:translateY(-1px); }
+  .tab:hover span{ color:var(--paper); }
+  @keyframes blip{ 0%,100%{opacity:.3; transform:scale(.8);} 50%{opacity:1; transform:scale(1.2);} }
 
-        .header h1 {
-            font-family: 'Mali', cursive;
-            color: #FF6B8B;
-            font-size: 38px;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 0px #FFFFFF, 4px 4px 0px #FFD1D4;
-            animation: bounce 2.5s infinite ease-in-out;
-        }
+  .rec-tag{ font-family:'Space Mono', monospace; font-size:10.5px; color:rgba(255,253,249,0.4); letter-spacing:.04em; flex-shrink:0; }
 
-        .header p {
-            font-size: 16px;
-            color: #8C7A9C;
-            background: #FFFFFF;
-            display: inline-block;
-            padding: 5px 20px;
-            border-radius: 20px;
-            border: 2px dashed #FFB6B9;
-        }
+  .progress-track{ height:4px; background:rgba(255,253,249,0.08); flex-shrink:0; }
+  .progress-fill{ height:100%; background:var(--mint); width:20%; transition:width .4s ease; border-radius:0 4px 4px 0; }
 
-        /* การ์ดหมวดหมู่หลัก */
-        .section-card {
-            background: rgba(255, 255, 255, 0.95);
-            border: 3px solid #FFB6B9;
-            border-radius: 25px;
-            box-shadow: 0 10px 20px rgba(255, 182, 185, 0.3);
-            padding: 30px;
-            margin-bottom: 35px;
-            position: relative;
-            backdrop-filter: blur(5px);
-        }
+  /* ===== MAIN STAGE ===== */
+  .stage{
+    flex:1;
+    position:relative;
+    background:
+      radial-gradient(circle, rgba(140,90,62,0.07) 3px, transparent 4px),
+      var(--paper);
+    background-size: 34px 34px;
+    overflow:hidden;
+  }
+  .slide{
+    position:absolute; inset:0;
+    padding:44px 64px 90px;
+    overflow-y:auto;
+    opacity:0; transform:translateY(18px);
+    pointer-events:none;
+    transition:opacity .45s ease, transform .45s ease;
+  }
+  .slide.active{ opacity:1; transform:translateY(0); pointer-events:auto; }
 
-        /* สติ๊กเกอร์น่ารักแปะมุมการ์ด */
-        .section-card::before {
-            content: '🎀';
-            position: absolute;
-            top: -15px;
-            right: 20px;
-            font-size: 24px;
-            background: #FFF0F5;
-            padding: 2px 8px;
-            border-radius: 50px;
-            border: 2px solid #FFB6B9;
-        }
+  .eyebrow{
+    font-family:'Baloo 2', cursive;
+    font-weight:600;
+    font-size:12.5px; letter-spacing:.08em; color:var(--mint-dark);
+    background:var(--paper-panel);
+    padding:5px 14px;
+    border-radius:20px;
+    display:inline-flex; align-items:center; gap:8px; margin-bottom:14px;
+  }
+  .eyebrow::before{ content:"🌿"; font-size:11px; }
 
-        .section-title {
-            font-family: 'Mali', cursive;
-            color: #FF6B8B;
-            border-bottom: 2px dashed #FFC2C7;
-            padding-bottom: 12px;
-            margin-top: 0;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+  .title-row{ display:flex; align-items:center; gap:14px; margin-bottom:6px; }
+  .title-row svg{ width:26px; height:26px; stroke:var(--mint-dark); flex-shrink:0; }
+  h1.slide-title{
+    font-family:'Baloo 2', cursive;
+    font-weight:700;
+    font-size:clamp(24px, 3.4vw, 38px);
+    color:var(--brown);
+    line-height:1.3;
+  }
+  .ecg-divider{ width:100%; max-width:420px; height:24px; margin:6px 0 24px; }
+  .ecg-divider path{ fill:none; stroke:var(--mint-dark); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; opacity:.7; }
 
-        /* Badge เพิ่มความเก๋ */
-        .badge {
-            background-color: #FFE3E8;
-            color: #FF5E7E;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
+  p, li{ color:var(--ink); font-size:16px; font-weight:500; line-height:1.8; }
+  .soft{ color:var(--ink-soft); font-weight:500; }
+  .placeholder{ color:#B79C8B; font-style:italic; font-weight:500; }
 
-        /* เลย์เอาต์ตารางผลงาน */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
+  /* ===== COVER ===== */
+  .cover{ height:100%; display:flex; align-items:center; gap:48px; }
+  .cover-text{ max-width:520px; flex-shrink:1; }
+  .cover .name{
+    font-family:'Baloo 2', cursive; font-weight:700;
+    font-size:clamp(28px, 4vw, 46px);
+    color:var(--brown); line-height:1.25; margin:10px 0 6px;
+  }
+  .cover .goal{ font-size:17px; color:var(--ink-soft); margin-bottom:18px; }
+  .cover .pulse-hero{ width:100%; max-width:420px; height:44px; margin-bottom:18px; }
+  .cover .pulse-hero path{
+    fill:none; stroke:var(--mint-dark); stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round;
+    stroke-dasharray:2400; stroke-dashoffset:2400;
+    animation:draw 1.8s ease-out .3s forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .cover .quote{ border-left:3px solid var(--mint); padding-left:18px; font-family:'Mali', cursive; font-size:16px; color:var(--ink-soft); font-style:italic; }
+  .rec-no{ font-family:'Space Mono', monospace; font-size:11px; color:var(--ink-soft); margin-top:22px; letter-spacing:.04em; }
 
-        /* การ์ดผลงานย่อย */
-        .project-card {
-            background: #FFFDF9;
-            border: 2px dashed #FFC2C7;
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
+  /* กรอบรูปโปรไฟล์หน้าปก แบบ "แปะเทป" ติดแฟ้ม */
+  .photo-frame{
+    flex-shrink:0;
+    width:216px; aspect-ratio:3/4;
+    background:#fff;
+    padding:8px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    box-shadow:0 14px 30px rgba(140,90,62,0.2);
+    transform:rotate(-3deg);
+    position:relative;
+    transition:transform .3s ease;
+  }
+  .photo-frame:hover{ transform:rotate(0deg) scale(1.02); }
+  .photo-frame img{ width:100%; height:100%; object-fit:cover; display:block; border-radius:14px; }
+  .photo-frame::before, .photo-frame::after{
+    content:""; position:absolute; top:-9px; width:34px; height:13px;
+    background:rgba(234,249,243,0.95); border:1px solid var(--line); border-radius:4px;
+  }
+  .photo-frame::before{ left:12px; transform:rotate(-8deg); }
+  .photo-frame::after{ right:12px; transform:rotate(6deg); }
 
-        .project-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            background: #FFFFFF;
-            border-style: solid;
-            border-color: #FF8E9E;
-            box-shadow: 0 8px 15px rgba(255, 142, 158, 0.2);
-        }
+  /* กรอบรูปติดบัตรทางการ (ใช้หน้าประวัติส่วนตัว) */
+  .id-photo{
+    width:120px; height:150px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:5px;
+    flex-shrink:0;
+  }
+  .id-photo img{ width:100%; height:100%; object-fit:cover; display:block; border-radius:12px; }
 
-        .project-icon {
-            font-size: 45px;
-            margin-bottom: 10px;
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
+  /* ===== GRID / CARD HELPERS ===== */
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:20px 32px; }
+  .field{ border-bottom:2px dotted var(--line); padding-bottom:10px; }
+  .field .label{ font-family:'Baloo 2', cursive; font-size:11px; color:var(--mint-dark); letter-spacing:.04em; margin-bottom:4px; font-weight:600; }
+  .field .value{ font-size:16px; font-weight:600; }
 
-        .project-card:hover .project-icon {
-            transform: rotate(10deg) scale(1.1);
-        }
+  table.edu{ width:100%; border-collapse:collapse; margin-top:8px; }
+  table.edu th, table.edu td{ text-align:left; padding:12px 14px; border-bottom:1px solid var(--line); font-size:15px; font-weight:500; }
+  table.edu th{ font-family:'Baloo 2', cursive; font-size:11.5px; letter-spacing:.03em; color:var(--mint-dark); font-weight:700; border-top:2px solid var(--mint); }
 
-        .project-card h3 {
-            font-family: 'Mali', cursive;
-            margin: 10px 0 5px 0;
-            color: #524763;
-            font-size: 18px;
-        }
+  .activity-list{ list-style:none; margin-top:8px; }
+  .activity-item{ display:grid; grid-template-columns:56px 90px 1fr; align-items:center; gap:16px; padding:14px 12px; border-bottom:1px solid var(--line); border-radius:var(--radius); transition:background .2s ease, transform .2s ease; }
+  .activity-item:hover{ background:var(--paper-panel); transform:translateX(4px); }
+  .activity-thumb{ width:56px; height:56px; border:1px solid var(--line); border-radius:14px; background:#fff; padding:3px; }
+  .activity-thumb img{ width:100%; height:100%; object-fit:cover; display:block; border-radius:10px; }
+  .activity-item .date{ font-family:'Baloo 2', cursive; font-weight:600; font-size:12.5px; color:var(--brown); display:flex; align-items:center; gap:6px; }
+  .activity-item .date::before{ content:"🍃"; font-size:11px; }
+  .activity-item .title{ font-weight:600; margin-bottom:3px; }
 
-        .project-card p {
-            margin: 0;
-            font-size: 13px;
-            color: #887B9B;
-            line-height: 1.5;
-        }
+  .interest-card{ background:var(--paper-panel); border:1px solid var(--line); border-left:4px solid var(--mint); border-radius:var(--radius); padding:22px 24px; margin-bottom:16px; box-shadow:0 4px 14px rgba(140,90,62,0.06); }
+  .interest-card .major{ font-family:'Baloo 2', cursive; font-weight:700; font-size:19px; color:var(--brown); margin-bottom:6px; }
 
-        /* สกิลบาร์แบบน่ารัก */
-        .skill-list {
-            list-style: none;
-            padding: 0;
-            margin: 15px 0 0 0;
-        }
+  /* การ์ดอันดับคณะ/มหาวิทยาลัย (3 อันดับ) */
+  .uni-card{ display:flex; gap:18px; align-items:flex-start; background:var(--paper-panel); border:1px solid var(--line); border-left:4px solid var(--mint); border-radius:var(--radius); padding:18px 20px; margin-bottom:14px; box-shadow:0 4px 14px rgba(140,90,62,0.06); transition:transform .2s ease; }
+  .uni-card:hover{ transform:translateY(-3px); }
+  .uni-rank{ width:32px; height:32px; border-radius:50%; background:var(--mint); color:#2E5C4C; font-family:'Baloo 2', cursive; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+  .uni-photo{ width:128px; height:92px; flex-shrink:0; border:1px solid var(--line); border-radius:14px; background:#fff; padding:4px; }
+  .uni-photo img{ width:100%; height:100%; object-fit:cover; display:block; border-radius:10px; }
+  .uni-info{ flex:1; min-width:160px; }
+  .uni-info .major{ font-family:'Baloo 2', cursive; font-weight:700; font-size:18px; color:var(--brown); margin-bottom:2px; }
+  .uni-info .uni-name{ font-family:'Baloo 2', cursive; font-size:12px; color:var(--mint-dark); letter-spacing:.02em; margin-bottom:6px; font-weight:600; }
 
-        .skill-item {
-            background: #FFF5F7;
-            margin-bottom: 10px;
-            padding: 10px 15px;
-            border-radius: 15px;
-            border: 1px solid #FFE0E6;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 14px;
-        }
+  /* ===== FLOATING NAV (มุมล่างขวา) ===== */
+  .nav-float{ position:absolute; bottom:22px; right:26px; z-index:6; display:flex; align-items:center; gap:12px; }
+  .nav-float .count{ font-family:'Baloo 2', cursive; font-weight:600; font-size:12px; color:var(--ink-soft); }
+  .nav-float button{ width:36px; height:36px; border:1px solid var(--line); background:var(--paper); color:var(--brown); cursor:pointer; font-size:14px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background .2s, color .2s, transform .15s; box-shadow:0 4px 10px rgba(140,90,62,0.12); }
+  .nav-float button:hover{ background:var(--mint); color:#2E5C4C; transform:scale(1.08); }
 
-        /* ปุ่มกดแบบเยลลี่ดุ๊กดิ๊ก */
-        .btn-group {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 28px;
-            background-color: #FF9EAA;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-family: 'Mali', cursive;
-            font-weight: bold;
-            font-size: 16px;
-            box-shadow: 0 5px 0 #FF7B89;
-            transition: all 0.2s ease;
-            margin: 0 8px;
-        }
-
-        .btn:hover {
-            transform: translateY(2px);
-            box-shadow: 0 3px 0 #FF7B89;
-            background-color: #FF8E9E;
-        }
-
-        .btn:active {
-            transform: translateY(5px);
-            box-shadow: 0 0 0 #FF7B89;
-        }
-
-        .btn-back {
-            background-color: #A0C4FF;
-            box-shadow: 0 5px 0 #7EA8F0;
-        }
-
-        .btn-back:hover {
-            background-color: #8EB8FA;
-            box-shadow: 0 3px 0 #7EA8F0;
-        }
-
-        /* Animation */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-7px) rotate(-1deg); }
-        }
-    </style>
+  @media (max-width:760px){
+    .topbar{ padding:0 14px; gap:10px; }
+    .brand span, .rec-tag{ display:none; }
+    .tab{ padding:8px 11px; }
+    .tab span{ font-size:11px; }
+    .slide{ padding:32px 20px 84px; }
+    .cover{ flex-direction:column-reverse; justify-content:center; gap:24px; text-align:left; }
+    .photo-frame{ width:150px; }
+    .grid2{ grid-template-columns:1fr; }
+    .activity-item{ grid-template-columns:44px 70px 1fr; gap:10px; }
+    .nav-float{ right:16px; bottom:16px; }
+    .uni-card{ flex-wrap:wrap; }
+    .uni-photo{ width:100px; height:74px; }
+  }
+</style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <!-- ส่วนหัวข้อ -->
-        <div class="header">
-            <h1>My Portfolio 💖✨</h1>
-            <p>🌷 รวมผลงานและความภูมิใจของณัฐธิดาค่ะ 🌷</p>
-        </div>
+<div class="app">
 
-        <!-- หมวดหมู่ที่ 1: ประวัติการศึกษา -->
-        <div class="section-card">
-            <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education (การศึกษา)</h2>
-            <span class="badge">🌸 Special Student Status</span>
-            <p style="margin-top: 5px;">✨ กำลังศึกษาในห้องเรียนพิเศษ <strong>Gifted Program</strong></p>
-            <p style="color: #7A6B8D; font-size: 14px;">เน้นการเรียนรู้ด้านวิทยาศาสตร์-คณิตศาสตร์ และเทคโนโลยีแบบเข้มข้นสุดๆ ไปเลย! 🧠💡⚡</p>
-        </div>
-
-        <!-- หมวดหมู่ที่ 2: ผลงานที่โดดเด่น -->
-        <div class="section-card">
-            <h2 class="section-title"><i class="fa-solid fa-star"></i> My Projects (ผลงานของฉัน)</h2>
-            <div class="portfolio-grid">
-                
-                <!-- ชิ้นงานที่ 1 -->
-                <div class="project-card">
-                    <div class="project-icon">💻</div>
-                    <h3>Web Development</h3>
-                    <p>สร้างและออกแบบหน้าเว็บไซต์แนะนำตัวน่ารักๆ ด้วยตัวเอง</p>
-                </div>
-
-                <!-- ชิ้นงานที่ 2 -->
-                <div class="project-card">
-                    <div class="project-icon">🧪</div>
-                    <h3>Science Project</h3>
-                    <p>โครงงานวิทยาศาสตร์สุดสร้างสรรค์ ฉบับเด็ก Gifted ✌️</p>
-                </div>
-
-                <!-- ชิ้นงานที่ 3 -->
-                <div class="project-card">
-                    <div class="project-icon">🎨</div>
-                    <h3>Digital Art</h3>
-                    <p>ออกแบบกราฟิกและวาดภาพตกแต่ง สไตล์พาสเทลพาสใจ</p>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- หมวดหมู่ที่ 3: ทักษะและความสามารถ -->
-        <div class="section-card">
-            <h2 class="section-title"><i class="fa-solid fa-heart"></i> Skills (ความสามารถพิเศษ)</h2>
-            <ul class="skill-list">
-                <li class="skill-item">
-                    <span>💻 Coding (HTML / CSS / Web Design)</span>
-                    <span>⭐⭐⭐⭐</span>
-                </li>
-                <li class="skill-item">
-                    <span>🔬 ทำวิจัย & ทดลองทางวิทยาศาสตร์</span>
-                    <span>⭐⭐⭐⭐⭐</span>
-                </li>
-                <li class="skill-item">
-                    <span>🧮 คิดเลขเร็ว & แก้โจทย์ปัญหาเชิงตรรกะ</span>
-                    <span>⭐⭐⭐⭐⭐</span>
-                </li>
-            </ul>
-        </div>
-
-        <!-- ปุ่มกดเปลี่ยนหน้า -->
-        <div class="btn-group">
-            <a href="index.html" class="btn btn-back"><i class="fa-solid fa-paw"></i> ย้อนกลับ</a>
-            <a href="#" class="btn" onclick="alert('หน้าต่อไปกำลังเตรียมข้อมูลอยู่จ้า ยินดีที่ได้รู้จักนะคะ! 💕🌸')"><i class="fa-solid fa-envelope"></i> ติดต่อฉัน 💌</a>
-        </div>
-
+  <header class="topbar">
+    <a href="index.html" class="back-link" aria-label="กลับไปหน้าแนะนำตัว" title="กลับไปหน้าแนะนำตัว">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </a>
+    <div class="brand" id="brandHome" style="cursor:pointer;">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,12 6,12 9,4 13,20 16,12 23,12"/></svg>
+      <span>PORTFOLIO</span>
     </div>
+    <nav class="nav-tabs" id="tabs"></nav>
+    <div class="rec-tag">REC. NO. 2569-001</div>
+  </header>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
 
+  <div class="stage">
+
+    <!-- 01 คำนำ -->
+    <section class="slide" data-index="0">
+      <div class="cover">
+        <div class="cover-text">
+          <div class="eyebrow">Portfolio · Medical Track</div>
+          <svg class="pulse-hero" viewBox="0 0 420 44" preserveAspectRatio="none">
+            <path d="M0,22 Q35,4 70,22 T140,22 T210,22 T280,22 T350,22 T420,22"/>
+          </svg>
+
+          <!-- ✏️ [แก้ไขข้อความ] ชื่อ-นามสกุล และคณะที่ต้องการสมัคร -->
+          <div class="name">ชื่อ นามสกุล</div>
+          <div class="goal">ผู้สมัครเข้าศึกษาต่อคณะ <span class="placeholder">[แพทยศาสตร์ / ทันตแพทยศาสตร์ ฯลฯ]</span></div>
+
+          <!-- ✏️ [แก้ไขข้อความ] คำโปรยแนะนำตัวสั้นๆ -->
+          <p class="soft" style="margin-bottom:16px;">
+            แฟ้มสะสมผลงานฉบับนี้รวบรวมประวัติการศึกษา ประวัติส่วนตัว กิจกรรม
+            และความมุ่งมั่นในการเดินสู่เส้นทางวิชาชีพแพทย์ เพื่อประกอบการพิจารณาเข้าศึกษาต่อ
+          </p>
+          <div class="quote">"<span class="placeholder">ใส่คำคมหรือประโยคที่สะท้อนแรงบันดาลใจสู่เส้นทางนี้</span>"</div>
+          <div class="rec-no">REC. NO. 2569-001 &nbsp;·&nbsp; STATUS: FOR REVIEW</div>
+        </div>
+
+        <!--
+          ══════════════════════════════════════════════════
+          📸 [ใส่รูปภาพตรงนี้] รูปโปรไฟล์หน้าปก (แนวตั้ง สัดส่วน 3:4)
+          วิธีใส่รูป: ลบ src ด้านล่างออก แล้วใส่ลิงก์รูปของคุณแทน
+          เช่น src="รูปของฉัน.jpg" (ถ้าอัปโหลดไฟล์รูปไว้โฟลเดอร์เดียวกับ index.html)
+          หรือ src="https://ลิงก์รูปของคุณ.jpg"
+          ══════════════════════════════════════════════════
+        -->
+        <div class="photo-frame">
+          <img src="https://placehold.co/280x373/EAF9F3/8C5A3E?text=รูปโปรไฟล์" alt="รูปโปรไฟล์">
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 ประวัติการศึกษา -->
+    <section class="slide" data-index="1">
+      <div class="eyebrow">Section 02</div>
+      <div class="title-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="13" y2="16"/></svg>
+        <h1 class="slide-title">ประวัติการศึกษา</h1>
+      </div>
+      <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><path d="M0,13 Q30,2 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13"/></svg>
+
+      <!-- ✏️ [แก้ไขข้อความ] ตารางประวัติการศึกษา — แก้ชื่อโรงเรียนและเกรดเฉลี่ยในแต่ละ <td> -->
+      <table class="edu">
+        <thead><tr><th>ระดับการศึกษา</th><th>สถานศึกษา</th><th>เกรดเฉลี่ย</th></tr></thead>
+        <tbody>
+          <tr><td>มัธยมศึกษาตอนปลาย</td><td class="placeholder">ชื่อโรงเรียน</td><td class="placeholder">x.xx</td></tr>
+          <tr><td>มัธยมศึกษาตอนต้น</td><td class="placeholder">ชื่อโรงเรียน</td><td class="placeholder">x.xx</td></tr>
+          <tr><td>ประถมศึกษา</td><td class="placeholder">ชื่อโรงเรียน</td><td class="placeholder">x.xx</td></tr>
+        </tbody>
+      </table>
+      <div class="field" style="margin-top:24px; max-width:320px;">
+        <div class="label">แผนการเรียน</div><div class="value placeholder">เช่น วิทย์-คณิต</div>
+      </div>
+    </section>
+
+    <!-- 03 ประวัติส่วนตัว -->
+    <section class="slide" data-index="2">
+      <div class="eyebrow">Section 03</div>
+      <div class="title-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+        <h1 class="slide-title">ประวัติส่วนตัว</h1>
+      </div>
+      <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><path d="M0,13 Q30,2 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13"/></svg>
+
+      <div style="display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap;">
+        <!--
+          📸 [ใส่รูปภาพตรงนี้] รูปติดบัตรทางการ (สัดส่วน 4:5) — วิธีใส่เหมือนรูปหน้าปก
+        -->
+        <div class="id-photo">
+          <img src="https://placehold.co/240x300/EAF9F3/8C5A3E?text=รูปติดบัตร" alt="รูปติดบัตร">
+        </div>
+
+        <!-- ✏️ [แก้ไขข้อความ] ข้อมูลส่วนตัวแต่ละช่อง -->
+        <div class="grid2" style="flex:1; min-width:280px;">
+          <div class="field"><div class="label">ชื่อ-นามสกุล</div><div class="value placeholder">ชื่อ นามสกุล</div></div>
+          <div class="field"><div class="label">ชื่อเล่น</div><div class="value placeholder">ชื่อเล่น</div></div>
+          <div class="field"><div class="label">วัน/เดือน/ปีเกิด</div><div class="value placeholder">DD/MM/YYYY</div></div>
+          <div class="field"><div class="label">ที่อยู่</div><div class="value placeholder">จังหวัด</div></div>
+          <div class="field"><div class="label">อีเมล</div><div class="value placeholder">example@email.com</div></div>
+          <div class="field"><div class="label">โทรศัพท์</div><div class="value placeholder">08x-xxx-xxxx</div></div>
+        </div>
+      </div>
+      <p class="soft placeholder" style="margin-top:24px;">เขียนแนะนำตัวสั้นๆ จุดแข็ง บุคลิก หรือแรงบันดาลใจที่ทำให้อยากเป็นแพทย์</p>
+    </section>
+
+    <!-- 04 กิจกรรม -->
+    <section class="slide" data-index="3">
+      <div class="eyebrow">Section 04</div>
+      <div class="title-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,3 14.23,8.93 20.56,9.22 15.61,13.17 17.29,19.28 12,15.8 6.71,19.28 8.39,13.17 3.44,9.22 9.77,8.93"/></svg>
+        <h1 class="slide-title">กิจกรรมที่เข้าร่วม</h1>
+      </div>
+      <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><path d="M0,13 Q30,2 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13"/></svg>
+
+      <!--
+        📸 [ใส่รูปภาพตรงนี้] แต่ละกิจกรรมมีรูปเล็กเป็นหลักฐาน (สี่เหลี่ยมจัตุรัส)
+        ✏️ [แก้ไขข้อความ] ปี, ชื่อกิจกรรม, รายละเอียด — ทำซ้ำแพทเทิร์นเดียวกันนี้เพื่อเพิ่ม/แก้แต่ละรายการ
+      -->
+      <ul class="activity-list">
+        <li class="activity-item">
+          <div class="activity-thumb"><img src="https://placehold.co/112x112/EAF9F3/8C5A3E?text=รูป" alt="รูปกิจกรรม"></div>
+          <div class="date placeholder">2567</div>
+          <div><div class="title placeholder">ชื่อกิจกรรม / รางวัลที่ได้รับ</div><div class="soft placeholder">รายละเอียดสั้นๆ ว่าทำอะไร บทบาท และสิ่งที่ได้เรียนรู้</div></div>
+        </li>
+        <li class="activity-item">
+          <div class="activity-thumb"><img src="https://placehold.co/112x112/EAF9F3/8C5A3E?text=รูป" alt="รูปกิจกรรม"></div>
+          <div class="date placeholder">2566</div>
+          <div><div class="title placeholder">ชื่อกิจกรรม / รางวัลที่ได้รับ</div><div class="soft placeholder">รายละเอียดสั้นๆ ว่าทำอะไร บทบาท และสิ่งที่ได้เรียนรู้</div></div>
+        </li>
+        <li class="activity-item">
+          <div class="activity-thumb"><img src="https://placehold.co/112x112/EAF9F3/8C5A3E?text=รูป" alt="รูปกิจกรรม"></div>
+          <div class="date placeholder">2565</div>
+          <div><div class="title placeholder">ชื่อกิจกรรม / รางวัลที่ได้รับ</div><div class="soft placeholder">รายละเอียดสั้นๆ ว่าทำอะไร บทบาท และสิ่งที่ได้เรียนรู้</div></div>
+        </li>
+        <li class="activity-item">
+          <div class="activity-thumb"><img src="https://placehold.co/112x112/EAF9F3/8C5A3E?text=รูป" alt="รูปกิจกรรม"></div>
+          <div class="date placeholder">2564</div>
+          <div><div class="title placeholder">ชื่อกิจกรรม / รางวัลที่ได้รับ</div><div class="soft placeholder">รายละเอียดสั้นๆ ว่าทำอะไร บทบาท และสิ่งที่ได้เรียนรู้</div></div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 05 ความสนใจศึกษาต่อ -->
+    <section class="slide" data-index="4">
+      <div class="eyebrow">Section 05</div>
+      <div class="title-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>
+        <h1 class="slide-title">ความสนใจในการศึกษาต่อ</h1>
+      </div>
+      <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><path d="M0,13 Q30,2 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13"/></svg>
+
+      <!--
+        ✏️ [แก้ไขข้อความ] 📸 [ใส่รูปภาพ] คณะ/มหาวิทยาลัยที่สนใจ 3 อันดับ
+        แต่ละ .uni-card คือ 1 อันดับ — แก้ src รูปในแต่ละ .uni-photo เป็นรูปมหาวิทยาลัยของจริง
+      -->
+      <div class="uni-card">
+        <div class="uni-rank">01</div>
+        <div class="uni-photo"><img src="https://placehold.co/256x184/EAF9F3/8C5A3E?text=มหาวิทยาลัย+1" alt="ภาพมหาวิทยาลัยอันดับ 1"></div>
+        <div class="uni-info">
+          <div class="major placeholder">ชื่อคณะ / สาขาวิชา</div>
+          <div class="uni-name placeholder">ชื่อมหาวิทยาลัย</div>
+          <p class="soft placeholder">เหตุผลที่สนใจอันดับนี้ เชื่อมโยงกับกิจกรรมหรือประสบการณ์ที่ผ่านมา</p>
+        </div>
+      </div>
+      <div class="uni-card">
+        <div class="uni-rank">02</div>
+        <div class="uni-photo"><img src="https://placehold.co/256x184/EAF9F3/8C5A3E?text=มหาวิทยาลัย+2" alt="ภาพมหาวิทยาลัยอันดับ 2"></div>
+        <div class="uni-info">
+          <div class="major placeholder">ชื่อคณะ / สาขาวิชา</div>
+          <div class="uni-name placeholder">ชื่อมหาวิทยาลัย</div>
+          <p class="soft placeholder">เหตุผลที่สนใจอันดับนี้ เชื่อมโยงกับกิจกรรมหรือประสบการณ์ที่ผ่านมา</p>
+        </div>
+      </div>
+      <div class="uni-card">
+        <div class="uni-rank">03</div>
+        <div class="uni-photo"><img src="https://placehold.co/256x184/EAF9F3/8C5A3E?text=มหาวิทยาลัย+3" alt="ภาพมหาวิทยาลัยอันดับ 3"></div>
+        <div class="uni-info">
+          <div class="major placeholder">ชื่อคณะ / สาขาวิชา</div>
+          <div class="uni-name placeholder">ชื่อมหาวิทยาลัย</div>
+          <p class="soft placeholder">เหตุผลที่สนใจอันดับนี้ เชื่อมโยงกับกิจกรรมหรือประสบการณ์ที่ผ่านมา</p>
+        </div>
+      </div>
+      <p class="placeholder" style="margin-top:18px;">เป้าหมายในอนาคตหลังจบการศึกษา และแผนที่จะทำให้ไปถึงเป้าหมายนั้น</p>
+    </section>
+
+  </div>
+
+  <div class="nav-float">
+    <div class="count" id="count">01 / 05</div>
+    <button id="homeBtn" aria-label="กลับหน้าแรก">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;">
+        <polyline points="3,11 12,4 21,11"/>
+        <path d="M5,10 V19 H19 V10"/>
+      </svg>
+    </button>
+    <button id="prevBtn" aria-label="ก่อนหน้า">&#8592;</button>
+    <button id="nextBtn" aria-label="ถัดไป">&#8594;</button>
+  </div>
+</div>
+
+<script>
+const sections = [
+  { label: "คำนำ", icon: `<polyline points="1,12 6,12 9,4 13,20 16,12 23,12"/>` },
+  { label: "ประวัติการศึกษา", icon: `<rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="13" y2="16"/>` },
+  { label: "ประวัติส่วนตัว", icon: `<circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>` },
+  { label: "กิจกรรม", icon: `<polygon points="12,3 14.23,8.93 20.56,9.22 15.61,13.17 17.29,19.28 12,15.8 6.71,19.28 8.39,13.17 3.44,9.22 9.77,8.93"/>` },
+  { label: "ความสนใจศึกษาต่อ", icon: `<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/>` },
+];
+
+const tabsEl = document.getElementById('tabs');
+const slides = document.querySelectorAll('.slide');
+const countEl = document.getElementById('count');
+const progressFill = document.getElementById('progressFill');
+let current = 0;
+
+sections.forEach((s, i) => {
+  const tab = document.createElement('div');
+  tab.className = 'tab';
+  tab.innerHTML = `<div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${s.icon}</svg><div class="blip"></div></div><span>${s.label}</span>`;
+  tab.addEventListener('click', () => goTo(i));
+  tabsEl.appendChild(tab);
+});
+
+function goTo(i){
+  current = Math.max(0, Math.min(sections.length - 1, i));
+  slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
+  [...tabsEl.children].forEach((t, idx) => t.classList.toggle('active', idx === current));
+  countEl.textContent = String(current+1).padStart(2,'0') + " / " + String(sections.length).padStart(2,'0');
+  progressFill.style.width = ((current+1)/sections.length*100) + '%';
+}
+
+document.getElementById('homeBtn').addEventListener('click', () => goTo(0));
+document.getElementById('brandHome').addEventListener('click', () => goTo(0));
+document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') goTo(current + 1);
+  if (e.key === 'ArrowLeft') goTo(current - 1);
+});
+
+let touchStartX = 0;
+document.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
+});
+
+goTo(0);
+</script>
 </body>
 </html>
+
