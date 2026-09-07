@@ -3,72 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>หน้าแนะนำตัวของฉัน 💖</title>
+    <title>แฟ้มสะสมผลงาน 🌈 - ณัฐธิดา</title>
     <style>
         body {
-            background-color: #FFF0F5; /* สีชมพูนมพาสเทล ละมุนตา */
+            background-color: #FFF0F5;
             background-image: radial-gradient(#FFB6B9 10%, transparent 11%), radial-gradient(#FFB6B9 10%, transparent 11%);
             background-size: 30px 30px;
-            background-position: 0 0, 15px 15px; /* ลายจุด Polka Dot อ่อนๆ เพิ่มความคิ้วท์ */
+            background-position: 0 0, 15px 15px;
             color: #5D536B;
             text-align: center;
-            padding: 50px 20px;
+            padding: 40px 20px;
             font-family: 'Kanit', 'Segoe UI', sans-serif;
         }
 
-        /* การ์ดหลัก */
-        .card {
-            background: #FFFFFF;
-            border: 4px solid #FFB6B9; /* ขอบสีชมพูวุ้นเส้น */
-            border-radius: 25px; /* มุมโค้งมนแบบมนๆ น่ารัก */
-            box-shadow: 0 8px 20px rgba(255, 182, 185, 0.4);
-            max-width: 45px;
-            max-width: 480px;
-            margin: 40px auto;
-            padding: 40px 30px;
-            position: relative;
-            animation: float 3s ease-in-out infinite; /* แอนิเมชันลอยดุ๊กดิ๊ก */
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
         }
 
-        /* ตกแต่งโบว์ด้านบนการ์ด */
-        .card::before {
-            content: "🎀";
-            font-size: 40px;
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
+        /* หัวข้อหลัก */
         h1 {
             color: #FF7B89;
-            font-size: 26px;
+            font-size: 28px;
+            margin-bottom: 30px;
+            background: #FFFFFF;
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 50px;
+            border: 3px solid #FFB6B9;
+            box-shadow: 0 4px 10px rgba(255, 182, 185, 0.3);
+        }
+
+        /* การ์ดแต่ละส่วน */
+        .card {
+            background: #FFFFFF;
+            border: 3px solid #FFB6B9;
+            border-radius: 20px;
+            box-shadow: 0 6px 15px rgba(255, 182, 185, 0.3);
             margin-bottom: 25px;
+            padding: 25px;
+            text-align: left;
         }
 
-        p {
-            font-size: 18px;
-            line-height: 1.8;
-            margin: 10px 0;
+        .card-title {
+            color: #FF7B89;
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .highlight {
-            background: linear-gradient(transparent 60%, #FFE3E3 60%); /* ไฮไลต์สีชมพูพาสเทลใต้ข้อความ */
-            padding: 0 5px;
+        /* รายการทักษะ (Tags) */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        /* ปุ่มกดสุดน่ารัก */
+        .skill-tag {
+            background-color: #FFE3E3;
+            color: #D85C6A;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        /* การ์ดผลงาน */
+        .project-item {
+            background: #FFF9FA;
+            border: 2px dashed #FFB6B9;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+
+        .project-item h3 {
+            margin: 0 0 5px 0;
+            color: #5D536B;
+            font-size: 16px;
+        }
+
+        .project-item p {
+            margin: 0;
+            font-size: 14px;
+            color: #8A7B9D;
+        }
+
+        /* ปุ่มกด */
         .btn {
             display: inline-block;
-            margin-top: 30px;
-            padding: 12px 35px;
+            margin-top: 10px;
+            padding: 10px 30px;
             background-color: #FFB6B9;
             color: white;
             text-decoration: none;
-            border-radius: 50px; /* ปุ่มโค้งมนกลมกิ๊ก */
+            border-radius: 50px;
             font-weight: bold;
-            font-size: 18px;
-            box-shadow: 0 4px 0 #FF9296; /* เงาปุ่มแบบ 3D สไตล์ขนมหวาน */
+            font-size: 16px;
+            box-shadow: 0 4px 0 #FF9296;
             transition: all 0.2s ease;
         }
 
@@ -78,34 +113,63 @@
             background-color: #FFA4A8;
         }
 
-        .btn:active {
-            transform: translateY(4px);
-            box-shadow: none;
+        .btn-github {
+            background-color: #8A7B9D;
+            box-shadow: 0 4px 0 #6C5F80;
         }
 
-        /* แอนิเมชันลอยขึ้นลงเบาๆ */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        .btn-github:hover {
+            background-color: #796A8C;
+            box-shadow: 0 2px 0 #6C5F80;
         }
     </style>
-    <!-- ดึงฟอนต์ไทยน่ารักๆ มาใช้ -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="card">
-        <h1>ยินดีต้อนรับสู่โปรไฟล์ของฉัน ✨🧸</h1>
-        <p>สวัสดีค่ะ! ฉันชื่อ <strong class="highlight">ณัฐธิดา (Natthida)</strong> ✨</p>
-        <p>กำลังศึกษาอยู่ห้องเรียนพิเศษ <strong class="highlight">Gifted 🧠💡</strong></p>
-        <p>นี่คือแฟ้มสะสมผลงานของฉันเองค่ะ! สายรุ้งงง 🌈</p>
-        
-        <!-- ปุ่มไปหน้าถัดไป -->
-        <a href="portfolio.html" class="btn">หน้าถัดไป 🐾</a>
+    <div class="container">
+        <h1>แฟ้มสะสมผลงาน 🌈✨</h1>
+
+        <!-- ส่วนที่ 1: ทักษะความสามารถ -->
+        <div class="card">
+            <h2 class="card-title">🧠 ทักษะความสามารถ (Skills)</h2>
+            <div class="skills-container">
+                <span class="skill-tag">HTML & CSS</span>
+                <span class="skill-tag">Mathematics</span>
+                <span class="skill-tag">Science</span>
+                <span class="skill-tag">English</span>
+                <span class="skill-tag">Creative Thinking</span>
+            </div>
+        </div>
+
+        <!-- ส่วนที่ 2: ผลงานและกิจกรรม -->
+        <div class="card">
+            <h2 class="card-title">🏆 ผลงาน & กิจกรรม (Projects)</h2>
+            
+            <div class="project-item">
+                <h3>📌 โครงงานนักเรียนห้องเรียนพิเศษ Gifted</h3>
+                <p>ศึกษาและพัฒนาโครงงานวิทยาศาสตร์ร่วมกับเพื่อนในห้องเรียน</p>
+            </div>
+
+            <div class="project-item">
+                <h3>💻 เว็บไซต์แนะนำตัวส่วนตัว (My First Website)</h3>
+                <p>พัฒนาเว็บไซต์พอร์ตโฟลิโอด้วย HTML & CSS และโฮสต์บน GitHub Pages</p>
+            </div>
+        </div>
+
+        <!-- ส่วนที่ 3: ช่องทางติดต่อ -->
+        <div class="card">
+            <h2 class="card-title">💌 ช่องทางติดต่อ (Contact)</h2>
+            <p>📧 Email: <a href="mailto:your-email@example.com" style="color: #FF7B89;">your-email@example.com</a></p>
+            <p>🐱 GitHub: <a href="https://github.com" target="_blank" style="color: #FF7B89;">github.com/your-username</a></p>
+        </div>
+
+        <!-- ปุ่มย้อนกลับ -->
+        <a href="index.html" class="btn">🐾 กลับหน้าแรก</a>
     </div>
 
 </body>
 </html>
+html>
