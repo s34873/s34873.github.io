@@ -279,6 +279,11 @@
   .uni-info .major{ font-family:'Baloo 2', cursive; font-weight:800; font-size:18.5px; color:var(--brown-dark); margin-bottom:2px; }
   .uni-info .uni-name{ font-family:'Baloo 2', cursive; font-size:12.5px; color:var(--mint-dark); letter-spacing:.02em; margin-bottom:6px; font-weight:700; }
 
+  /* ===== SOP ===== */
+  .sop-block{ background:var(--paper-panel); border:2px solid var(--mint); border-radius:var(--radius); padding:26px 30px; margin-bottom:22px; box-shadow:0 8px 22px -12px rgba(140,90,62,0.2); }
+  .sop-block h3{ font-family:'Baloo 2', cursive; font-weight:700; font-size:17px; color:var(--mint-dark); margin-bottom:10px; }
+  .sop-block p{ margin-bottom:4px; }
+
   /* ===== FLOATING NAV ===== */
   .nav-float{ position:absolute; bottom:24px; right:28px; z-index:6; display:flex; align-items:center; gap:12px; }
   .nav-float .count{ font-family:'Baloo 2', cursive; font-weight:700; font-size:12.5px; color:var(--ink-soft); background:var(--paper); padding:6px 14px; border-radius:16px; box-shadow:0 4px 10px -4px rgba(140,90,62,0.2); }
@@ -386,6 +391,7 @@
           <div class="rec-no">REC. NO. 2569-001 &nbsp;·&nbsp; STATUS: FOR REVIEW</div>
         </div>
 
+        <!-- 📸 [ใส่รูปตรงนี้] รูปโปรไฟล์หน้าปก แนวตั้ง ขนาดพอๆกับ 280x373px แก้แค่ src="..." ด้านล่าง -->
         <div class="photo-frame">
           <img src="https://placehold.co/280x373/EAF9F3/8C5A3E?text=รูปโปรไฟล์" alt="รูปโปรไฟล์">
           <div class="frame-sticker">🎧</div>
@@ -393,9 +399,36 @@
       </div>
     </section>
 
-    <!-- 02 ประวัติการศึกษา -->
+    <!-- 02 SOP -->
     <section class="slide" data-index="1">
       <div class="eyebrow">Section 02</div>
+      <div class="title-row">
+        <div class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div>
+        <h1 class="slide-title">SOP (Statement of Purpose) 📝</h1>
+      </div>
+      <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><path d="M0,13 Q30,2 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13"/></svg>
+
+      <!--
+        ✏️ [แก้ไขข้อความ] แบ่ง SOP เป็นหัวข้อย่อยได้ตามต้องการ (แรงบันดาลใจ / ความพร้อม / เป้าหมาย ฯลฯ)
+        ทำซ้ำแพทเทิร์น .sop-block เพื่อเพิ่ม/แก้แต่ละย่อหน้า
+      -->
+      <div class="sop-block">
+        <h3>แรงบันดาลใจ</h3>
+        <p class="placeholder">เกิดจากภาพความทรงจำในวัยเด็กที่มีคุณป้าเป็นผู้พิการทางการได้ยิน ภาพความพยายามในการสื่อสารผ่านท่าทาง ได้นำไปสู่การตระหนักถึงความเหลื่อมล้ำและอุปสรรคทางการสื่อสารที่คนหูหนวกต้องเผชิญ จึงกลายเป็นอุดมการณ์อันมุ่งมั่นที่จะทำหน้าที่เป็นสื่อกลางในการลดช่องว่างทางสังคม</p>
+      </div>
+      <div class="sop-block">
+        <h3>ความพร้อมและประสบการณ์</h3>
+        <p class="placeholder">ได้ริเริ่มศึกษาและฝึกฝนทักษะภาษามือเบื้องต้นด้วยตนเองผ่านระบบออนไลน์ ทำให้มีความรู้ความเข้าใจในองค์ประกอบสำคัญ ทั้งการใช้สัญลักษณ์มือ รูปแบบนิ้วมือ และการแสดงออกทางสีหน้า ตลอดจนเข้าถึงคุณค่าของการสื่อสารเชิงมนุษยยธรรมะ</p>
+      </div>
+      <div class="sop-block">
+        <h3>เป้าหมายในอนาคต</h3>
+        <p class="placeholder">มุ่งมั่นเข้าศึกษาในหลักสูตรวิชาหูหนวกศึกษาและการศึกษาของคนหูหนวก มหาวิทยาลัยมหิดล เพื่อแสวงหาความเชี่ยวชาญเชิงวิชาการและเข้าใจวัฒนธรรมของคนหูหนวกอย่างลึกซึ้ง โดยมีเป้าหมายในการนำองค์ความรู้ไปขับเคลื่อนโอกาสที่เท่าเทียม และเป็นสะพานเชื่อมการสื่อสารเพื่อประโยชน์แก่สังคมอย่างยั่งยืน</p>
+      </div>
+    </section>
+
+    <!-- 03 ประวัติการศึกษา -->
+    <section class="slide" data-index="2">
+      <div class="eyebrow">Section 03</div>
       <div class="title-row">
         <div class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="13" y2="16"/></svg></div>
         <h1 class="slide-title">ประวัติการศึกษา 📚</h1>
@@ -415,15 +448,16 @@
       </div>
     </section>
 
-    <!-- 03 ประวัติส่วนตัว -->
-    <section class="slide" data-index="2">
-      <div class="eyebrow">Section 03</div>
+    <!-- 04 ประวัติส่วนตัว -->
+    <section class="slide" data-index="3">
+      <div class="eyebrow">Section 04</div>
       <div class="title-row">
         <div class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></div>
         <h1 class="slide-title">ประวัติส่วนตัว 🌷</h1>
       </div>
       <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><path d="M0,13 Q30,2 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13"/></svg>
 
+      <!-- 📸 [ใส่รูปตรงนี้] รูปติดบัตร ขนาดพอๆกับ 240x300px แก้แค่ src="..." ด้านล่าง -->
       <div style="display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap;">
         <div class="id-photo" style="position:relative;">
           <span class="mini-sticker" style="bottom:-8px; right:-8px; font-size:22px;">🌷</span>
@@ -439,14 +473,12 @@
           <div class="field"><div class="label">โทรศัพท์</div><div class="value placeholder">063-0933514</div></div>
         </div>
       </div>
-      <p class="soft placeholder" style="margin-top:24px;">สวัสดีค่ะ ดิฉัน นางสาวณัฐธิดา ศรีสงครามจุดเริ่มต้นที่ทำให้ดิฉันสนใจเข้าศึกษาในสาขาวิชานี้ เกิดจากภาพความทรงจำในวัยเด็กที่มีคุณป้าเป็นผู้พิการทางการได้ยิน ในเวลานั้นดิฉันยังไม่เข้าใจภาษามือและไม่เข้าใจถึงเหตุผลที่คุณป้าไม่สามารถออกเสียงพูดได้เหมือนคนทั่วไป มีเพียงภาพความพยายามในการใช้ท่าทางเพื่อสื่อสารกับคนรอบข้าง แต่เมื่อเติบโตขึ้นและมองย้อนกลับไป ดิฉันจึงตระหนักถึงความยากลำบากและความเหลื่อมล้ำทางการสื่อสารที่คนหูหนวกต้องเผชิญในสังคม ความทรงจำดังกล่าวได้เปลี่ยนเป็นแรงบันดาลใจอันแรงกล้าที่ทำให้ดิฉันมุ่งมั่นจะนำองค์ความรู้ไปทำหน้าที่เป็นสะพานเชื่อมการสื่อสาร ลดช่องว่างระหว่างคนหูหนวกและคนหูดี และร่วมสร้างสังคมที่ทุกคนสามารถเข้าใจและเติบโตไปด้วยกันได้อย่างเท่าเทียม
-     ดิฉันจึงได้เริ่มเรียนรู้ภาษามือเบื้องต้นด้วยตนเองผ่านช่องทางออนไลน์ สิ่งนี้ไม่เพียงแต่ทำให้เข้าใจสัญลักษณ์มือ รูปแบบนิ้วมือ หรือการแสดงออกทางสีหน้าที่เป็นหัวใจสำคัญเท่านั้น แต่ยังเปิดโลกทัศน์ให้ดิฉันได้สัมผัสถึง "ภาษาที่ไร้เสียง ทว่าทรงพลังยิ่งกว่าคำพูด" ทุกครั้งที่ฝึกฝน ดิฉันยิ่งตระหนักว่าภาษามือไม่ใช่แค่เรื่องของการตีความหมาย แต่คือการส่งผ่านความรู้สึก ความใส่ใจ และความเคารพในความเป็นมนุษย์การเรียนรู้ด้วยตนเองในวันนี้นับเป็นเพียงก้าวแรก แต่นั่นก็ยิ่งตอกย้ำให้ดิฉันมุ่งมั่นที่จะเข้าศึกษาต่อใน หลักสูตรวิชาหูหนวกศึกษาและการศึกษาของคนหูหนวก มหาวิทยาลัยมหิดล อย่างเป็นระบบ เพราะการจะเป็นตัวกลางที่เข้มแข็งได้นั้น จำเป็นต้องอาศัยทักษะ ความเข้าใจเชิงลึกในวัฒนธรรมของคนหูหนวก และหลักวิชาการที่ถูกต้อง แม้จะรู้ดีว่าเส้นทางแห่งนี้ต้องใช้ความพยายามและความอดทน แต่ดิฉันก็พร้อมที่จะทุ่มเทเพื่อนำความรู้ไปทลายกำแพงแห่งความไม่เข้าใจ
-    การได้รับโอกาสเข้าศึกษาในหลักสูตรนี้ จึงเป็นก้าวสำคัญในการสานต่อแรงบันดาลใจในวัยเด็กให้กลายเป็นความจริง ดิฉันพร้อมที่จะพัฒนาศักยภาพ หล่อหลอมความเชี่ยวชาญ และทำหน้าที่ส่งเสริมโอกาสที่เท่าเทียม เพื่อร่วมสร้างโลกที่ทุกเสียงแม้ไร้เสียงพูดจะได้รับการรับฟังและเข้าใจด้วยหัวใจอย่างแท้จริงค่ะ</p>
+      <p class="soft placeholder" style="margin-top:24px;"></p>
     </section>
 
-    <!-- 04 กิจกรรม -->
-    <section class="slide" data-index="3">
-      <div class="eyebrow">Section 04</div>
+    <!-- 05 กิจกรรม -->
+    <section class="slide" data-index="4">
+      <div class="eyebrow">Section 05</div>
       <div class="title-row">
         <div class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,3 14.23,8.93 20.56,9.22 15.61,13.17 17.29,19.28 12,15.8 6.71,19.28 8.39,13.17 3.44,9.22 9.77,8.93"/></svg></div>
         <h1 class="slide-title">กิจกรรมที่เข้าร่วม 🎉</h1>
@@ -512,7 +544,7 @@ Pop Mart CRYBABY x Powerpuff Girls Princess Morbucks ในการทำงา
         <div class="cert-card">
           <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร+5" alt="เกียรติบัตร"></div>
           <div class="cert-body">
-            <div class="date placeholder">🍃 2567</ div>
+            <div class="date placeholder">🍃 2567</div>
             <div class="title placeholder">เข้าร่วมการอบรม “โครงการ STRONG CAMP เยาวชนไทยต้านโกง” จังหวัดชลบุรี</div>
             <div class="soft placeholder">วันที่20 สิงหาคม 2567 
 สถานที่:โรงเรียนบ้านบึง “อุตสาหกรรมนุเคราะห์” 
@@ -564,15 +596,16 @@ Pop Mart CRYBABY x Powerpuff Girls Princess Morbucks ในการทำงา
       </div>
     </section>
 
-    <!-- 05 ความสนใจศึกษาต่อ -->
-    <section class="slide" data-index="4">
-      <div class="eyebrow">Section 05</div>
+    <!-- 06 ความสนใจศึกษาต่อ -->
+    <section class="slide" data-index="5">
+      <div class="eyebrow">Section 06</div>
       <div class="title-row">
         <div class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg></div>
         <h1 class="slide-title">ความสนใจอยากศึกษาต่อ 🎯</h1>
       </div>
       <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><path d="M0,13 Q30,2 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13"/></svg>
 
+      <!-- 📸 [ใส่รูปตรงนี้] รูปมหาวิทยาลัย/คณะ ขนาดพอๆกับ 256x184px แก้ src="..." ในแต่ละ .uni-photo -->
       <div class="uni-card">
         <div class="uni-rank">🥇</div>
         <div class="uni-photo"><img src="https://placehold.co/256x184/EAF9F3/8C5A3E?text=มหาวิทยาลัย+1" alt="ภาพมหาวิทยาลัยอันดับ 1"></div>
@@ -606,7 +639,7 @@ Pop Mart CRYBABY x Powerpuff Girls Princess Morbucks ในการทำงา
   </div>
 
   <div class="nav-float">
-    <div class="count" id="count">01 / 05</div>
+    <div class="count" id="count">01 / 06</div>
     <button id="homeBtn" aria-label="กลับหน้าแรก">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;">
         <polyline points="3,11 12,4 21,11"/>
@@ -621,6 +654,7 @@ Pop Mart CRYBABY x Powerpuff Girls Princess Morbucks ในการทำงา
 <script>
 const sections = [
   { label: "คำนำ", icon: `<polyline points="1,12 6,12 9,4 13,20 16,12 23,12"/>` },
+  { label: "SOP", icon: `<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/>` },
   { label: "ประวัติการศึกษา", icon: `<rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="13" y2="16"/>` },
   { label: "ประวัติส่วนตัว", icon: `<circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>` },
   { label: "กิจกรรม", icon: `<polygon points="12,3 14.23,8.93 20.56,9.22 15.61,13.17 17.29,19.28 12,15.8 6.71,19.28 8.39,13.17 3.44,9.22 9.77,8.93"/>` },
