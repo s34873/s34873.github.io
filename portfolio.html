@@ -257,13 +257,15 @@
   table.edu th{ font-family:'Baloo 2', cursive; font-size:12px; letter-spacing:.03em; color:#fff; font-weight:700; background:linear-gradient(120deg, var(--mint-dark), var(--mint)); }
   table.edu tr:hover td{ background:var(--paper-panel); }
 
-  .activity-list{ list-style:none; margin-top:8px; }
-  .activity-item{ display:grid; grid-template-columns:58px 90px 1fr; align-items:center; gap:16px; padding:14px 14px; margin-bottom:8px; border:2px solid var(--line); border-radius:var(--radius); transition:background .25s ease, transform .25s cubic-bezier(.34,1.56,.64,1), border-color .25s ease, box-shadow .25s ease; }
-  .activity-item:hover{ background:var(--paper-panel); transform:translateX(6px) scale(1.01); border-color:var(--mint); box-shadow:0 10px 22px -12px rgba(140,90,62,0.35); }
-  .activity-thumb{ width:58px; height:58px; border:2px solid var(--line); border-radius:16px; background:#fff; padding:3px; }
-  .activity-thumb img{ width:100%; height:100%; object-fit:cover; display:block; border-radius:12px; }
-  .activity-item .date{ font-family:'Baloo 2', cursive; font-weight:700; font-size:13px; color:#fff; background:var(--brown); display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:14px; width:fit-content; }
-  .activity-item .title{ font-weight:700; margin-bottom:3px; color:var(--brown-dark); }
+  .cert-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:24px; margin-top:8px; }
+  .cert-card{ position:relative; display:flex; flex-direction:column; border:2px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--paper); transition:transform .25s cubic-bezier(.34,1.56,.64,1), border-color .25s ease, box-shadow .25s ease; box-shadow:0 8px 20px -14px rgba(140,90,62,0.25); }
+  .cert-card:hover{ transform:translateY(-6px) scale(1.015); border-color:var(--mint); box-shadow:0 18px 32px -14px rgba(140,90,62,0.4); }
+  .cert-image{ width:100%; aspect-ratio:4/3; background:#fff; padding:10px; border-bottom:2px solid var(--line); }
+  .cert-image img{ width:100%; height:100%; object-fit:cover; display:block; border-radius:14px; }
+  .cert-body{ padding:16px 18px 20px; flex:1; display:flex; flex-direction:column; }
+  .cert-card .date{ font-family:'Baloo 2', cursive; font-weight:700; font-size:13px; color:#fff; background:var(--brown); display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:14px; width:fit-content; margin-bottom:8px; }
+  .cert-card .title{ font-weight:700; margin-bottom:6px; color:var(--brown-dark); line-height:1.5; }
+  .cert-card .soft{ font-size:13.5px; line-height:1.7; }
 
   .interest-card{ background:var(--paper-panel); border:2px solid var(--mint); border-radius:var(--radius); padding:24px 26px; margin-bottom:18px; box-shadow:0 8px 22px -12px rgba(140,90,62,0.2); position:relative; }
   .interest-card .major{ font-family:'Baloo 2', cursive; font-weight:800; font-size:19px; color:var(--brown-dark); margin-bottom:6px; }
@@ -320,7 +322,7 @@
     .cover{ flex-direction:column-reverse; justify-content:center; gap:26px; text-align:left; }
     .photo-frame{ width:160px; }
     .grid2{ grid-template-columns:1fr; }
-    .activity-item{ grid-template-columns:46px 70px 1fr; gap:10px; }
+    .cert-grid{ grid-template-columns:1fr; gap:18px; }
     .nav-float{ right:16px; bottom:16px; }
     .uni-card{ flex-wrap:wrap; }
     .uni-photo{ width:100px; height:74px; }
@@ -384,14 +386,6 @@
           <div class="rec-no">REC. NO. 2569-001 &nbsp;·&nbsp; STATUS: FOR REVIEW</div>
         </div>
 
-        <!--
-          ══════════════════════════════════════════════════
-          📸 [ใส่รูปภาพตรงนี้] รูปโปรไฟล์หน้าปก (แนวตั้ง สัดส่วน 3:4)
-          วิธีใส่รูป: ลบ src ด้านล่างออก แล้วใส่ลิงก์รูปของคุณแทน
-          เช่น src="รูปของฉัน.jpg" (ถ้าอัปโหลดไฟล์รูปไว้โฟลเดอร์เดียวกับ index.html)
-          หรือ src="https://ลิงก์รูปของคุณ.jpg"
-          ══════════════════════════════════════════════════
-        -->
         <div class="photo-frame">
           <img src="https://placehold.co/280x373/EAF9F3/8C5A3E?text=รูปโปรไฟล์" alt="รูปโปรไฟล์">
           <div class="frame-sticker">🩺</div>
@@ -408,7 +402,6 @@
       </div>
       <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><path d="M0,13 Q30,2 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13"/></svg>
 
-      <!-- ✏️ [แก้ไขข้อความ] ตารางประวัติการศึกษา — แก้ชื่อโรงเรียนและเกรดเฉลี่ยในแต่ละ <td> -->
       <table class="edu">
         <thead><tr><th>ระดับการศึกษา</th><th>สถานศึกษา</th><th>เกรดเฉลี่ย</th></tr></thead>
         <tbody>
@@ -432,15 +425,11 @@
       <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><path d="M0,13 Q30,2 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13"/></svg>
 
       <div style="display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap;">
-        <!--
-          📸 [ใส่รูปภาพตรงนี้] รูปติดบัตรทางการ (สัดส่วน 4:5) — วิธีใส่เหมือนรูปหน้าปก
-        -->
         <div class="id-photo" style="position:relative;">
           <span class="mini-sticker" style="bottom:-8px; right:-8px; font-size:22px;">🌷</span>
           <img src="https://placehold.co/240x300/EAF9F3/8C5A3E?text=รูปติดบัตร" alt="รูปติดบัตร">
         </div>
 
-        <!-- ✏️ [แก้ไขข้อความ] ข้อมูลส่วนตัวแต่ละช่อง -->
         <div class="grid2" style="flex:1; min-width:280px;">
           <div class="field"><div class="label">ชื่อ-นามสกุล</div><div class="value placeholder">นางสาวณัฐธิดา ศรีสงคราม</div></div>
           <div class="field"><div class="label">ชื่อเล่น</div><div class="value placeholder">หวาย</div></div>
@@ -465,60 +454,157 @@
       <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><path d="M0,13 Q30,2 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13"/></svg>
 
       <!--
-        📸 [ใส่รูปภาพตรงนี้] แต่ละกิจกรรมมีรูปเล็กเป็นหลักฐาน (สี่เหลี่ยมจัตุรัส)
-        ✏️ [แก้ไขข้อความ] ปี, ชื่อกิจกรรม, รายละเอียด — ทำซ้ำแพทเทิร์นเดียวกันนี้เพื่อเพิ่ม/แก้แต่ละรายการ
+        📸 [ใส่รูปภาพตรงนี้] แต่ละช่องคือ 1 เกียรติบัตร/รางวัล — รูปใหญ่ขึ้นด้านบนการ์ด
+        ✏️ [แก้ไขข้อความ] ปี, ชื่อรางวัล/กิจกรรม, รายละเอียด — ทำซ้ำแพทเทิร์น .cert-card เพื่อเพิ่ม/แก้แต่ละรายการ
+        ตอนนี้มีทั้งหมด 15 ช่อง (4 ช่องแรกมีข้อมูลตัวอย่าง ที่เหลือเป็นช่องว่างให้กรอกเพิ่ม)
       -->
-      <ul class="activity-list">
-        <li class="activity-item" style="position:relative;">
-          <span class="mini-sticker" style="top:-10px; left:38px; font-size:16px;">🏆</span>
-          <div class="activity-thumb"><img src="https://placehold.co/112x112/EAF9F3/8C5A3E?text=รูป" alt="รูปกิจกรรม"></div>
-          <div class="date">🍃 2567</div>
-          <div><div class="title placeholder">รางวัลนักเรียนดีเด่นด้านการบำเพ็ญประโยชน์ และอุทิศตนเพื่อโรงเรียน</div><div class="soft placeholder">วันที่ 31 มีนาคม 2567
+      <div class="cert-grid">
+        <div class="cert-card">
+          <span class="mini-sticker" style="top:8px; left:8px; font-size:16px; z-index:3;">🏆</span>
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date">🍃 2567</div>
+            <div class="title placeholder">รางวัลนักเรียนดีเด่นด้านการบำเพ็ญประโยชน์ และอุทิศตนเพื่อโรงเรียน</div>
+            <div class="soft placeholder">วันที่ 31 มีนาคม 2567
 สถานที่:โรงเรียนบ้านบึง “อุตสาหกรรมนุเคราะห์”
 ดิฉันได้รับรางวัลนักเรียนดีเด่นด้านการบำเพ็ญประโยชน์
  อุทิศตนเพื่อโรงเรียน เป็นผลเนื่องมาจากในปีการศึกษา2567
  ที่ผ่านมาดิฉันได้เข้าร่วมกิจกรรมจิตอาสาและบำเพ็ญประโยชน์
 ให้โรงเรียนในหลายๆกิจกรรม การได้รับรางวัลในครั้งนี้
-ทำให้ดิฉันอยากที่จะพัฒนาตัวเองให้เป็นคนที่ดียิ่งขึ้นไปอีก</div></div>
-        </li>
-        <li class="activity-item">
-          <div class="activity-thumb"><img src="https://placehold.co/112x112/EAF9F3/8C5A3E?text=รูป" alt="รูปกิจกรรม"></div>
-          <div class="date">🍃 2567</div>
-          <div><div class="title placeholder">รางวัลชนะเลิศการประกวดการประกวดชุดตัวละครMiss B.B. Science 2024 ภายใต้แนวคิด "POP MART x BCG Model" ระดับชั้นมัธยมศึกษาตอนปลาย เนื่องในวันวิทยาศาสตร์แห่งชาติ ประจำปี2567</div><div class="soft placeholder">วันที่16 สิงหาคม 2567
+ทำให้ดิฉันอยากที่จะพัฒนาตัวเองให้เป็นคนที่ดียิ่งขึ้นไปอีก</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date">🍃 2567</div>
+            <div class="title placeholder">รางวัลชนะเลิศการประกวดการประกวดชุดตัวละครMiss B.B. Science 2024 ภายใต้แนวคิด "POP MART x BCG Model" ระดับชั้นมัธยมศึกษาตอนปลาย เนื่องในวันวิทยาศาสตร์แห่งชาติ ประจำปี2567</div>
+            <div class="soft placeholder">วันที่16 สิงหาคม 2567
  สถานที่:โรงเรียนบ้านบึง “อุตสาหกรรมนุเคราะห์”
 ดิฉันได้รับรางวัลชนะเลิศการประกวดชุดตัวละครจากวัสดุรีไซเคิลในระดับมัธยมศึกษาตอนปลายโดยดิฉันมีหน้าที่ออกแบบ และจัดทำชุดตัวละครที่ได้ต้นแบบมาจาก
-Pop Mart CRYBABY x Powerpuff Girls Princess Morbucks ในการทำงานครั้งนี้ทำให้ดิฉันได้รู้จักการทำงานที่ต้องแบ่งเวลาว่างระหว่างวันเพื่อไปทำชุดตัวละคร และเรียนรู้ที่จะรับฟังความคิดของผู้อื่นและการทำงานร่วมกับผู้อื่นให้สำเร็จไปได้ด้วยดี</div></div>
-        </li>
-        <li class="activity-item">
-          <div class="activity-thumb"><img src="https://placehold.co/112x112/EAF9F3/8C5A3E?text=รูป" alt="รูปกิจกรรม"></div>
-          <div class="date">🍃 2567</div>
-          <div><div class="title placeholder">สมาชิกสภานักเรียนโรงเรียนบ้านบึง “อุตสาหกรรมนุเคราะห์” 
-ประจำปีการศึกษา 2567</div><div class="soft placeholder">ตลอดปีการศึกษา2567
+Pop Mart CRYBABY x Powerpuff Girls Princess Morbucks ในการทำงานครั้งนี้ทำให้ดิฉันได้รู้จักการทำงานที่ต้องแบ่งเวลาว่างระหว่างวันเพื่อไปทำชุดตัวละคร และเรียนรู้ที่จะรับฟังความคิดของผู้อื่นและการทำงานร่วมกับผู้อื่นให้สำเร็จไปได้ด้วยดี</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date">🍃 2567</div>
+            <div class="title placeholder">สมาชิกสภานักเรียนโรงเรียนบ้านบึง “อุตสาหกรรมนุเคราะห์” 
+ประจำปีการศึกษา 2567</div>
+            <div class="soft placeholder">ตลอดปีการศึกษา2567
 สถานที่:โรงเรียนบ้านบึง “อุตสาหกรรมนุเคราะห์”
- ดิฉันมีความสนใจที่จะช่วยพัฒนาและแก้ปัญหาต่างๆในโรงเรียนจึงได้เข้าร่วมเป็นสมาชิกสภานักเรียน และได้ดำรงตำแหน่ง "กรรมการฝ่ายประชาสัมพันธ์" ทำหน้าที่เป็นผู้จัดทำอินโฟกราฟิก เพื่อประชาสัมพันธ์กิจกรรมต่างๆในโรงเรียน ให้นักเรียนคนอื่นได้รับทราบ และเป็นผู้ดูแลเพจสภานักเรียน นอกเหนือจากนี้ดิฉันยังได้ทำหน้าที่สมาชิกสภานักเรียนในการทำกิจกรรมต่างๆของโรงเรียน เช่น การทำจิตอาสาต่างๆที่เป็นประโยชน์แก่โรงเรียน และการวางตัวให้เหมาะสมเพื่อเป็นแบบอย่างให้เพื่อนๆพี่ๆน้องๆในโรงเรียน การการทำงานในครั้งนี้เป็นประสบการ์ณที่สำคัญมากของดิฉัน ส่งเสริมให้ดิฉันต้องมีความรับผิดชอบมากขึ้น เสริมสร้างทักษะดิจิทัลและการสร้างสรรค์สื่อ พัฒนาทักษะการประสานงานและการทำงานเป็นทีม สร้างภาวะผู้นำและความน่าเชื่อถือและ เพิ่มพูนทักษะการบริหารเวลาและรับผิดชอบหน้าที่</div></div>
-        </li>
-        <li class="activity-item">
-          <div class="activity-thumb"><img src="https://placehold.co/112x112/EAF9F3/8C5A3E?text=รูป" alt="รูปกิจกรรม"></div>
-          <div class="date">🍃 2569</div>
-          <div><div class="title placeholder">การเรียนเพิ่มเติม</div><div class="soft placeholder">จากการศึกษาเพิ มเติมด้วยตนเองผ่านระบบ KUMOOC จนสําเร็จรายวิชาภาษามือเบื ้องต้น และภาษามือในชีวิตป
-ระจําวัน ทําดิฉันได้พัฒนาทักษะการใช้ภาษามือขั ้นพื ้นฐานซึ ่งนอกจากจะช่วยเพิ ่มพูนความรู้แล้ว ยังเป ็นก้าวสําคัญที ช่วยยืนยันถึงความตั ้งใจจริงของดิฉันที่มีต่อการเข้าศึกษาในสาขาวิชานี้</div></div>
-        </li>
-      </ul>
+ ดิฉันมีความสนใจที่จะช่วยพัฒนาและแก้ปัญหาต่างๆในโรงเรียนจึงได้เข้าร่วมเป็นสมาชิกสภานักเรียน และได้ดำรงตำแหน่ง "กรรมการฝ่ายประชาสัมพันธ์" ทำหน้าที่เป็นผู้จัดทำอินโฟกราฟิก เพื่อประชาสัมพันธ์กิจกรรมต่างๆในโรงเรียน ให้นักเรียนคนอื่นได้รับทราบ และเป็นผู้ดูแลเพจสภานักเรียน นอกเหนือจากนี้ดิฉันยังได้ทำหน้าที่สมาชิกสภานักเรียนในการทำกิจกรรมต่างๆของโรงเรียน เช่น การทำจิตอาสาต่างๆที่เป็นประโยชน์แก่โรงเรียน และการวางตัวให้เหมาะสมเพื่อเป็นแบบอย่างให้เพื่อนๆพี่ๆน้องๆในโรงเรียน การการทำงานในครั้งนี้เป็นประสบการ์ณที่สำคัญมากของดิฉัน ส่งเสริมให้ดิฉันต้องมีความรับผิดชอบมากขึ้น เสริมสร้างทักษะดิจิทัลและการสร้างสรรค์สื่อ พัฒนาทักษะการประสานงานและการทำงานเป็นทีม สร้างภาวะผู้นำและความน่าเชื่อถือและ เพิ่มพูนทักษะการบริหารเวลาและรับผิดชอบหน้าที่</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date">🍃 2569</div>
+            <div class="title placeholder">การเรียนเพิ่มเติม</div>
+            <div class="soft placeholder">จากการศึกษาเพิมเติมด้วยตนเองผ่านระบบ KUMOOC จนสําเร็จรายวิชาภาษามือเบื้องต้น และภาษามือในชีวิตป
+ระจําวัน ทําดิฉันได้พัฒนาทักษะการใช้ภาษามือขั้นพื้นฐานซึ่งนอกจากจะช่วยเพิ่มพูนความรู้แล้ว ยังเป็นก้าวสําคัญทีช่วยยืนยันถึงความตั้งใจจริงของดิฉันที่มีต่อการเข้าศึกษาในสาขาวิชานี้</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร+5" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date placeholder">🍃 ปี พ.ศ.</div>
+            <div class="title placeholder">ชื่อรางวัล/เกียรติบัตร</div>
+            <div class="soft placeholder">รายละเอียด วันที่ สถานที่ และความรู้สึก/สิ่งที่ได้เรียนรู้</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร+6" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date placeholder">🍃 ปี พ.ศ.</div>
+            <div class="title placeholder">ชื่อรางวัล/เกียรติบัตร</div>
+            <div class="soft placeholder">รายละเอียด วันที่ สถานที่ และความรู้สึก/สิ่งที่ได้เรียนรู้</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร+7" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date placeholder">🍃 ปี พ.ศ.</div>
+            <div class="title placeholder">ชื่อรางวัล/เกียรติบัตร</div>
+            <div class="soft placeholder">รายละเอียด วันที่ สถานที่ และความรู้สึก/สิ่งที่ได้เรียนรู้</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร+8" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date placeholder">🍃 ปี พ.ศ.</div>
+            <div class="title placeholder">ชื่อรางวัล/เกียรติบัตร</div>
+            <div class="soft placeholder">รายละเอียด วันที่ สถานที่ และความรู้สึก/สิ่งที่ได้เรียนรู้</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร+9" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date placeholder">🍃 ปี พ.ศ.</div>
+            <div class="title placeholder">ชื่อรางวัล/เกียรติบัตร</div>
+            <div class="soft placeholder">รายละเอียด วันที่ สถานที่ และความรู้สึก/สิ่งที่ได้เรียนรู้</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร+10" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date placeholder">🍃 ปี พ.ศ.</div>
+            <div class="title placeholder">ชื่อรางวัล/เกียรติบัตร</div>
+            <div class="soft placeholder">รายละเอียด วันที่ สถานที่ และความรู้สึก/สิ่งที่ได้เรียนรู้</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร+11" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date placeholder">🍃 ปี พ.ศ.</div>
+            <div class="title placeholder">ชื่อรางวัล/เกียรติบัตร</div>
+            <div class="soft placeholder">รายละเอียด วันที่ สถานที่ และความรู้สึก/สิ่งที่ได้เรียนรู้</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร+12" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date placeholder">🍃 ปี พ.ศ.</div>
+            <div class="title placeholder">ชื่อรางวัล/เกียรติบัตร</div>
+            <div class="soft placeholder">รายละเอียด วันที่ สถานที่ และความรู้สึก/สิ่งที่ได้เรียนรู้</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร+13" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date placeholder">🍃 ปี พ.ศ.</div>
+            <div class="title placeholder">ชื่อรางวัล/เกียรติบัตร</div>
+            <div class="soft placeholder">รายละเอียด วันที่ สถานที่ และความรู้สึก/สิ่งที่ได้เรียนรู้</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร+14" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date placeholder">🍃 ปี พ.ศ.</div>
+            <div class="title placeholder">ชื่อรางวัล/เกียรติบัตร</div>
+            <div class="soft placeholder">รายละเอียด วันที่ สถานที่ และความรู้สึก/สิ่งที่ได้เรียนรู้</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-image"><img src="https://placehold.co/400x300/EAF9F3/8C5A3E?text=เกียรติบัตร+15" alt="เกียรติบัตร"></div>
+          <div class="cert-body">
+            <div class="date placeholder">🍃 ปี พ.ศ.</div>
+            <div class="title placeholder">ชื่อรางวัล/เกียรติบัตร</div>
+            <div class="soft placeholder">รายละเอียด วันที่ สถานที่ และความรู้สึก/สิ่งที่ได้เรียนรู้</div>
+          </div>
+        </div>
+      </div>
     </section>
-่
+
     <!-- 05 ความสนใจศึกษาต่อ -->
     <section class="slide" data-index="4">
       <div class="eyebrow">Section 05</div>
       <div class="title-row">
         <div class="title-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg></div>
-        <h1 class="slide-title">ความสนใจอยากศึกษาต่อ<🎯</h1>
+        <h1 class="slide-title">ความสนใจอยากศึกษาต่อ 🎯</h1>
       </div>
       <svg class="ecg-divider" viewBox="0 0 420 26" preserveAspectRatio="none"><path d="M0,13 Q30,2 60,13 T120,13 T180,13 T240,13 T300,13 T360,13 T420,13"/></svg>
 
-      <!--
-        ✏️ [แก้ไขข้อความ] 📸 [ใส่รูปภาพ] คณะ/มหาวิทยาลัยที่สนใจ 3 อันดับ
-        แต่ละ .uni-card คือ 1 อันดับ — แก้ src รูปในแต่ละ .uni-photo เป็นรูปมหาวิทยาลัยของจริง
-      -->
       <div class="uni-card">
         <div class="uni-rank">🥇</div>
         <div class="uni-photo"><img src="https://placehold.co/256x184/EAF9F3/8C5A3E?text=มหาวิทยาลัย+1" alt="ภาพมหาวิทยาลัยอันดับ 1"></div>
